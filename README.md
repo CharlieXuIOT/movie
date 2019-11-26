@@ -11,7 +11,7 @@
     1. jQuery 
     2. Samrty
     3. bootstrap 3版
-  PS:
+PS:
     1. 善用 ajax 使用時機
     2. 自行規劃程式架構
     3. 不得使用市面上框架

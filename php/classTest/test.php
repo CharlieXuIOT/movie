@@ -168,9 +168,15 @@
 // $post->test();
 
 // 這是在return尛?
-$one = true;
-$two = true;
-$three = true;
-$result = $one && $two && $three;
-var_dump($result);
+// $one = true;
+// $two = true;
+// $three = true;
+// $result = $one && $two && $three;
+// var_dump($result);
+
+if (isset($_COOKIE["token"])) {
+    echo $_COOKIE["token"];
+} else {
+    echo "token not exist";
+}
 ?>

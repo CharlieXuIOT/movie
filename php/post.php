@@ -18,10 +18,10 @@ if (isset($_POST["action"])) {
     }
 } else {
     if (isset($_GET["page"])) {
-        echo $post->index("", $_GET["page"]);
+        echo $post->index($_GET["page"]);
     } elseif (isset($_GET["id"])) {
         echo $post->showModify($_GET["id"]);
     } else {
-        echo $post->index("", "1");
+        echo $post->index("1");
     }
 };

@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f5fb6a5-0429-4f7f-8e6f-71ee338f000c" name="Default Changelist" comment="" />
+    <list default="true" id="0f5fb6a5-0429-4f7f-8e6f-71ee338f000c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/5e13dcea40e303a51786493c970105e5b9be2b4b.register.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/cache/5e13dcea40e303a51786493c970105e5b9be2b4b.register.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/a3d4a8fd7477dbf07858ba8c7b1708b10e94ec11.index.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/cache/a3d4a8fd7477dbf07858ba8c7b1708b10e94ec11.index.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Token.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/member.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/50a11f830d81e67a22e019c21787119d10c84c82_0.file.index.tpl.cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/50a11f830d81e67a22e019c21787119d10c84c82_0.file.index.tpl.cache.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/8f60cb02fcd1980582db3c6b2005119fc2dea169_0.file.navbar.tpl.cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/8f60cb02fcd1980582db3c6b2005119fc2dea169_0.file.navbar.tpl.cache.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +35,13 @@
       <executable />
     </execution>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1U6F9CA4fQ4q7ol7zNGlMGKLd5E" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -41,10 +68,22 @@
       <option name="presentableId" value="Default" />
       <updated>1574668983722</updated>
       <workItem from="1574668984975" duration="8944000" />
+      <workItem from="1574731214365" duration="25952000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

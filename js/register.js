@@ -40,13 +40,12 @@ $(document).ready(function () {
 
     });
 
-    $("#Register").click(function (e) {
+    $("#Register").click(function () {
         if ((accFlag === 1) && (pwFlag === 1) && (pw2Flag === 1)) {
             $account = $("#account").val();
             $password = $("#password").val();
             $.ajax({
                 type: "POST",
-                // url: "php/register.php",
                 url: "php/member.php",
                 data: {
                     "action": "register",
@@ -55,10 +54,10 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     response = JSON.parse(response);
-                    if (response === true) {
+                    if (response["status"] === true) {
                         alert("註冊成功!");
                         window.location.href = "login.php";
-                    } else if (response === false) {
+                    } else if (response["status"] === false) {
                         alert("帳號重複!");
                     }
                 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-26 11:30:12
-  from 'C:\xampp\htdocs\movie\templates\index.tpl' */
+/* Smarty version 3.1.33, created on 2019-11-26 10:35:00
+  from 'C:\xampp\htdocs\movie\templates\deposit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ddcfeb4911f53_62381543',
+  'unifunc' => 'content_5ddcf1c48dc2d2_69135716',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '50a11f830d81e67a22e019c21787119d10c84c82' => 
+    'f56bbb4486edc8de4303aeba0bac0a0f697890fb' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\movie\\templates\\index.tpl',
-      1 => 1574758630,
+      0 => 'C:\\xampp\\htdocs\\movie\\templates\\deposit.tpl',
+      1 => 1574760900,
       2 => 'file',
     ),
     '8f60cb02fcd1980582db3c6b2005119fc2dea169' => 
@@ -24,8 +24,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_5ddcfeb4911f53_62381543 (Smarty_Internal_Template $_smarty_tpl) {
-?><html lang="en">
+function content_5ddcf1c48dc2d2_69135716 (Smarty_Internal_Template $_smarty_tpl) {
+?><!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -42,7 +43,6 @@ function content_5ddcfeb4911f53_62381543 (Smarty_Internal_Template $_smarty_tpl)
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <script src="js/navbar.js"></script>
 </head>
@@ -55,34 +55,21 @@ function content_5ddcfeb4911f53_62381543 (Smarty_Internal_Template $_smarty_tpl)
             </div>
             <ul class="nav navbar-nav navbar-right">
                 
-                                    <li><a id="navRegister" href="register.html"><span
-                                    class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a id="navLogin" href="login.php"><span
-                                    class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 
+                                    <li><a id="navAccount">Welcome, 123 </a></li>
+                    <li>
+                        <a id="navCash" href="deposit.php"><span
+                                    class="glyphicon glyphicon-usd"></span> 0 </a>
+                    </li>
+                    <li>
+                        <a id="navLogout" href=""><span
+                                    class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
                             </ul>
         </div>
     </div>
 </nav>
-    <div class="row article">
-        <div class="movieList">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail movieItem">
-                    <img src="img/film_20191028050.jpg">
-                    <div class="caption">
-                        <h3>決戰中途島</h3>
-                        <p>MIDWAY</p>
-                        <p>2019-11-08</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pagebar">
-
-        </div>
-
-    </div>
+    <p>儲值頁面</p>
 </body>
 </html><?php }
 }

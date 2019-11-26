@@ -19,8 +19,6 @@ class Session
         $arr["account"] = $_SESSION["account"];
         $arr["permission"] = $_SESSION["permission"];
         return $arr;
-        // $this->ss_account = $_SESSION["account"];
-        // $this->ss_permission = $_SESSION["permission"];
     }
 
     /**

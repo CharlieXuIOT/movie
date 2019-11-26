@@ -4,7 +4,6 @@ $(document).ready(function () {
         $password = $("#password").val();
         $.ajax({
             type: "POST",
-            // url: "php/login.php",
             url: "php/member.php",
             data: {
                 "action": "login",
@@ -13,10 +12,10 @@ $(document).ready(function () {
             },
             success: function (response) {
                 response = JSON.parse(response);
-                if (response === true) {
+                if (response["status"] === true) {
                     alert("登入成功!");
                     window.location.href = "index.php";
-                } else if (response === false) {
+                } else if (response["status"] === false) {
                     alert("請確認帳號或是密碼!");
                 }
             }

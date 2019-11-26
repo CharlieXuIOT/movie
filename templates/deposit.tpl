@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,30 +16,11 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <script src="js/navbar.js"></script>
 </head>
 <body>
     {{include file="navbar.tpl"}}
-    <div class="row article">
-        <div class="movieList">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail movieItem">
-                    <img src="img/film_20191028050.jpg">
-                    <div class="caption">
-                        <h3>決戰中途島</h3>
-                        <p>MIDWAY</p>
-                        <p>2019-11-08</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="pagebar">
-
-        </div>
-
-    </div>
+    <p>儲值頁面</p>
 </body>
 </html>
