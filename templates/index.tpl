@@ -17,22 +17,27 @@
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
+    {if isset($tokenCheckFail)}
+        <script src="js/tokenCheckFail.js"></script>
+    {/if}
     <script src="js/navbar.js"></script>
 </head>
 <body>
     {{include file="navbar.tpl"}}
     <div class="row article">
         <div class="movieList">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail movieItem">
-                    <img src="img/film_20191028050.jpg">
+            {foreach $movieLists as $movieList}
+            <div class="col-xs-12 col-sm-12 col-md-4 movieItem">
+                <div class="thumbnail">
+                    <img src="img/{{$movieList.img}}">
                     <div class="caption">
-                        <h3>決戰中途島</h3>
-                        <p>MIDWAY</p>
-                        <p>2019-11-08</p>
+                        <h3>{{$movieList.name_tw}}</h3>
+                        <p>{{$movieList.name_en}}</p>
+                        <p>{{$movieList.create_at}}</p>
                     </div>
                 </div>
             </div>
+            {/foreach}
         </div>
 
         <div class="pagebar">

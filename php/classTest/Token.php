@@ -30,42 +30,44 @@ class Token
     /**
      * 用token確認使用者的登入狀態、帳號、權限
      */
-    function checkToken($token)
+    function checkToken()
     {
         ## 遊客或已登出會員，cookie裡面沒有token
-        if ($token != "") {
-            ## 接token查詢後獲得的帳號和權限
-            $account = "";
-            $permission = "";
-            $cash = "";
-            $stmt = $this->conn->prepare("SELECT `account`, `permission`, `cash` FROM `member` WHERE `token` = ?");
-            $stmt->bind_param("s", $token);
-            $stmt->execute();
-            $stmt->bind_result($account, $permission, $cash);
-            $stmt->fetch();
-            if ($account === NULL) {
-                $arr["status"] = false;
-                $arr["msg"] = "NULL";
-            } else {
-                $arr["status"] = true;
-                $arr["msg"] = "";
-                $arr["account"] = $account;
-                $arr["permission"] = $permission;
-                $arr["cash"] = $cash;
-            }
-        } else {
+        if (!isset($_COOKIE["token"])) {
             $arr["status"] = true;
             $arr["msg"] = "";
             $arr["account"] = "guest";
             $arr["permission"] = 0;
+            return $arr;
+        }
+
+        ## 拿$_COOKIE["token"]查詢後獲得的帳號和權限
+        $account = "";
+        $permission = "";
+        $cash = "";
+        $stmt = $this->conn->prepare("SELECT `account`, `permission`, `cash` FROM `member` WHERE `token` = ?");
+        $stmt->bind_param("s", $_COOKIE["token"]);
+        $stmt->execute();
+        $stmt->bind_result($account, $permission, $cash);
+        $stmt->fetch();
+        if ($account === NULL) {
+            $arr["status"] = false;
+            $arr["msg"] = "NULL";
+            setcookie("token", "", time()-3600, "/");
+        } else {
+            $arr["status"] = true;
+            $arr["msg"] = "";
+            $arr["account"] = $account;
+            $arr["permission"] = $permission;
+            $arr["cash"] = $cash;
         }
         return $arr;
     }
 
     /**
-     * 登出清除token
+     * 登出 清除token
      */
-    function clearToken()
+    function logout()
     {
         $query = 'UPDATE `member` SET `token` = "" WHERE `token` = ?';
         $stmt = $this->conn->prepare($query);

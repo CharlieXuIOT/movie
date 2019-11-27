@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-27 02:26:59
+/* Smarty version 3.1.33, created on 2019-11-27 11:53:14
   from 'C:\xampp\htdocs\movie\templates\navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dddd0e3a59f17_40019343',
+  'unifunc' => 'content_5dde559a15d895_34962179',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8f60cb02fcd1980582db3c6b2005119fc2dea169' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\navbar.tpl',
-      1 => 1574818017,
+      1 => 1574851993,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5dddd0e3a59f17_40019343 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->compiled->nocache_hash = '11957603755dddd0e38e65a6_21164482';
-?>
-<nav class="navbar navbar-inverse">
+function content_5dde559a15d895_34962179 (Smarty_Internal_Template $_smarty_tpl) {
+?><nav class="navbar navbar-inverse">
     <div class="navbar_gap">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -59,7 +57,7 @@ $_prefixVariable5 = ob_get_clean();
 ob_start();
 echo $_prefixVariable5;
 $_prefixVariable6 = ob_get_clean();
-if ($_prefixVariable6 == 1) {?>
+if ($_prefixVariable6 >= 1) {?>
                     <li><a id="navAccount">Welcome, <?php ob_start();
 echo $_smarty_tpl->tpl_vars['navbar']->value['account'];
 $_prefixVariable7 = ob_get_clean();
@@ -67,11 +65,11 @@ echo $_prefixVariable7;?>
  </a></li>
                     <li>
                         <a id="navCash" href="deposit.php"><span
-                                    class="glyphicon glyphicon-usd"></span> <?php ob_start();
+                                    class="glyphicon glyphicon-usd"></span><?php ob_start();
 echo $_smarty_tpl->tpl_vars['navbar']->value['cash'];
 $_prefixVariable8 = ob_get_clean();
 echo $_prefixVariable8;?>
- </a>
+</a>
                     </li>
                     <li>
                         <a id="navLogout" href=""><span

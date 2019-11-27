@@ -17,10 +17,21 @@
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
 
+    {if isset($tokenCheckFail)}
+        <script src="js/tokenCheckFail.js"></script>
+    {/if}
     <script src="js/navbar.js"></script>
+    <script src="js/deposit.js"></script>
 </head>
 <body>
     {{include file="navbar.tpl"}}
     <p>儲值頁面</p>
+    <select id="amount">
+        　<option value="100">100</option>
+        　<option value="200">200</option>
+        　<option value="500">500</option>
+        　<option value="1000">1000</option>
+    </select>
+    <button id="deposit">給我錢</button>
 </body>
 </html>

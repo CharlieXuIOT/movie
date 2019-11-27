@@ -1,14 +1,20 @@
 $(document).ready(function () {
-    $("#Login").click(function (e) {
-        $account = $("#account").val();
-        $password = $("#password").val();
+    let regex = /^[A-Za-z0-9]{3,}$/;
+    $("#Login").click(function () {
+        account = $("#account").val();
+        password = $("#password").val();
+        if (!regex.test(account) || !regex.test(password)) {
+            alert("帳號或是密碼格式不符");
+            return false;
+        }
+
         $.ajax({
             type: "POST",
             url: "php/member.php",
             data: {
                 "action": "login",
-                "account": $account,
-                "password": $password
+                "account": account,
+                "password": password
             },
             success: function (response) {
                 response = JSON.parse(response);

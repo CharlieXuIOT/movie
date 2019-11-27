@@ -12,16 +12,19 @@ $smarty = new Smarty;
 $member = new Member($conn);
 // $smarty->force_compile = true;
 $smarty->debugging = true;
-$smarty->caching = true;
+// $smarty->caching = true;
 $smarty->cache_lifetime = 120;
-// $smarty->assign("FirstName", array("John", "Mary", "James", "Henry"));
 
 ## navbar data
-if (isset($_COOKIE["token"])) {
-    $result = $member->checkToken($_COOKIE["token"]);
-} else {
+$result = $member->checkToken();
+if ($result["status"] === false) {
+    ## token比對使用者失敗，前端重新登入
+    $smarty->assign("tokenCheckFail", 1);
+} elseif ($result["permission"] === 0) {
+    ## 遊客
     header('Location: login.php');
+} else {
+    $smarty->assign("navbar", $result);
 }
-$smarty->assign("navbar", $result);
 
 $smarty->display('deposit.tpl');

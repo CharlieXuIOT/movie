@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-26 11:30:12
+/* Smarty version 3.1.33, created on 2019-11-27 02:29:22
   from 'C:\xampp\htdocs\movie\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ddcfeb4911f53_62381543',
+  'unifunc' => 'content_5dddd172a64073_97960795',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -18,13 +18,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     '8f60cb02fcd1980582db3c6b2005119fc2dea169' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\navbar.tpl',
-      1 => 1574760011,
+      1 => 1574818017,
       2 => 'file',
     ),
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_5ddcfeb4911f53_62381543 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dddd172a64073_97960795 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -55,11 +55,16 @@ function content_5ddcfeb4911f53_62381543 (Smarty_Internal_Template $_smarty_tpl)
             </div>
             <ul class="nav navbar-nav navbar-right">
                 
-                                    <li><a id="navRegister" href="register.html"><span
-                                    class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a id="navLogin" href="login.php"><span
-                                    class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 
+                                    <li><a id="navAccount">Welcome, 789 </a></li>
+                    <li>
+                        <a id="navCash" href="deposit.php"><span
+                                    class="glyphicon glyphicon-usd"></span> 0 </a>
+                    </li>
+                    <li>
+                        <a id="navLogout" href=""><span
+                                    class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
                             </ul>
         </div>
     </div>

@@ -10,17 +10,17 @@
                 {/if}
 
                 {if {{$navbar.permission}} == 0}
-                    <li><a id="navRegister" href="register.html"><span
+                    <li><a id="navRegister" href="register.php"><span
                                     class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                     <li><a id="navLogin" href="login.php"><span
                                     class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 {/if}
 
-                {if {{$navbar.permission}} == 1}
+                {if {{$navbar.permission}} >= 1}
                     <li><a id="navAccount">Welcome, {{$navbar.account}} </a></li>
                     <li>
                         <a id="navCash" href="deposit.php"><span
-                                    class="glyphicon glyphicon-usd"></span> {{$navbar.cash}} </a>
+                                    class="glyphicon glyphicon-usd"></span>{{$navbar.cash}}</a>
                     </li>
                     <li>
                         <a id="navLogout" href=""><span

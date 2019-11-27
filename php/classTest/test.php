@@ -174,9 +174,36 @@
 // $result = $one && $two && $three;
 // var_dump($result);
 
-if (isset($_COOKIE["token"])) {
-    echo $_COOKIE["token"];
-} else {
-    echo "token not exist";
+// if (isset($_COOKIE["token"])) {
+//     echo $_COOKIE["token"];
+// } else {
+//     echo "token not exist";
+// }
+
+
+class test
+{
+    function what1($post){
+        $first = $post["firstname"];
+        echo "func call: $first";
+    }
+    function what2($post){
+        $second = $post["secondname"];
+        echo "func my: $second";
+    }
+    function what3($post){
+        echo "func name: ";
+    }
+}
+
+$test = new test();
+if (isset($_POST["action"])) {
+    // foreach($_POST as $key => $value){
+    //     if ($key != "action"){
+    //         echo $key.'=>'.$value.'<br/>';
+    //     }
+    // }
+    test::{$_POST["action"]}($_POST);
+    // $_POST["action"]($_POST["firstname"], $_POST["secondname"]);
 }
 ?>

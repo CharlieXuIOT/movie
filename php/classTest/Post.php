@@ -42,6 +42,6 @@ class Post extends Token
             $arr["data"][] = $row;
         }
         $this->conn->close();
-        return json_encode($arr);
+        return $arr;
     }
 }

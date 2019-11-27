@@ -42,15 +42,15 @@ $(document).ready(function () {
 
     $("#Register").click(function () {
         if ((accFlag === 1) && (pwFlag === 1) && (pw2Flag === 1)) {
-            $account = $("#account").val();
-            $password = $("#password").val();
+            account = $("#account").val();
+            password = $("#password").val();
             $.ajax({
                 type: "POST",
                 url: "php/member.php",
                 data: {
                     "action": "register",
-                    "account": $account,
-                    "password": $password
+                    "account": account,
+                    "password": password
                 },
                 success: function (response) {
                     response = JSON.parse(response);

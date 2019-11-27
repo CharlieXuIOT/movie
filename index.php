@@ -14,25 +14,25 @@ $member = new Member($conn);
 $post = new Post($conn);
 // $smarty->force_compile = true;
 $smarty->debugging = true;
-$smarty->caching = true;
+// $smarty->caching = true;
 $smarty->cache_lifetime = 120;
-// $smarty->assign("FirstName", array("John", "Mary", "James", "Henry"));
 
 ## navbar data
-if (isset($_COOKIE["token"])) {
-    $result = $member->checkToken($_COOKIE["token"]);
+$result = $member->checkToken();
+if ($result["status"] === false) {
+    ## token比對使用者失敗，前端重新登入
+    $smarty->assign("tokenCheckFail", 1);
 } else {
-    $result = $member->checkToken("");
-}
-$smarty->assign("navbar", $result);
+    $smarty->assign("navbar", $result);
 
-## movieList data
-if (isset($_GET["page"])) {
-    $movieLists = $post->index($_GET["page"]);
-} else {
-    $movieLists = $post->index("1");
+    ## movieList data
+    if (isset($_GET["page"])) {
+        $movieLists = $post->index($_GET["page"]);
+    } else {
+        $movieLists = $post->index("1");
+    }
+    $smarty->assign("page", $movieLists["page"]);
+    $smarty->assign("pages", $movieLists["pages"]);
+    $smarty->assign("movieLists", $movieLists["data"]);
 }
-$smarty->assign("movieLists", $movieLists);
-## https://www.smarty.net/docs/en/language.function.foreach.tpl
-
 $smarty->display('index.tpl');
