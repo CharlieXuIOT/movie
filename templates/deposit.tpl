@@ -25,13 +25,21 @@
 </head>
 <body>
     {{include file="navbar.tpl"}}
-    <p>儲值頁面</p>
-    <select id="amount">
-        　<option value="100">100</option>
-        　<option value="200">200</option>
-        　<option value="500">500</option>
-        　<option value="1000">1000</option>
-    </select>
-    <button id="deposit">給我錢</button>
+    <div class="container col-md-offset-5 col-md-2 input-group">
+        <h1>儲值頁面</h1>
+        <h1>
+            <select class="form-control" id="amount" style="width:auto; float: left">
+                　<option value="100">100</option>
+                　<option value="200">200</option>
+                　<option value="500">500</option>
+                　<option value="1000">1000</option>
+            </select>
+            {*https://stackoverflow.com/questions/24573822/bootstrap-select-and-button-next-to-each-other*}
+            <span class="input-group-btn">
+                <button id="deposit" class="btn btn-info">給我錢</button>
+            </span>
+
+        </h1>
+    </div>
 </body>
 </html>

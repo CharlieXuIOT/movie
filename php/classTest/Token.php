@@ -73,7 +73,7 @@ class Token
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $_COOKIE["token"]);
         if ($stmt->execute()) {
-            setcookie("token", "", time()-3600, "/");
+            setcookie("token", "", time()-1, "/");
             $arr["status"] = true;
             $arr["msg"] = "";
         } else {

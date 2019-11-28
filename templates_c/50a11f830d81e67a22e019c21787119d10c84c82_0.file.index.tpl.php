@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-27 03:55:04
+/* Smarty version 3.1.33, created on 2019-11-28 04:14:58
   from 'C:\xampp\htdocs\movie\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ddde58855ae73_00737236',
+  'unifunc' => 'content_5ddf3bb2dc7e17_53108384',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50a11f830d81e67a22e019c21787119d10c84c82' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\index.tpl',
-      1 => 1574823301,
+      1 => 1574910898,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5ddde58855ae73_00737236 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ddf3bb2dc7e17_53108384 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,27 +71,35 @@ foreach ($_from as $_smarty_tpl->tpl_vars['movieList']->value) {
 ?>
             <div class="col-xs-12 col-sm-12 col-md-4 movieItem">
                 <div class="thumbnail">
-                    <img src="img/<?php ob_start();
-echo $_smarty_tpl->tpl_vars['movieList']->value['img'];
+                    <a href="moviedetail.php?id=<?php ob_start();
+echo $_smarty_tpl->tpl_vars['movieList']->value['id'];
 $_prefixVariable2 = ob_get_clean();
 echo $_prefixVariable2;?>
-">
-                    <div class="caption">
-                        <h3><?php ob_start();
-echo $_smarty_tpl->tpl_vars['movieList']->value['name_tw'];
+"><img src="img/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['movieList']->value['img'];
 $_prefixVariable3 = ob_get_clean();
 echo $_prefixVariable3;?>
-</h3>
-                        <p><?php ob_start();
-echo $_smarty_tpl->tpl_vars['movieList']->value['name_en'];
+"></a>
+                    <div class="caption">
+                        <a href="moviedetail.php?id=<?php ob_start();
+echo $_smarty_tpl->tpl_vars['movieList']->value['id'];
 $_prefixVariable4 = ob_get_clean();
 echo $_prefixVariable4;?>
-</p>
-                        <p><?php ob_start();
-echo $_smarty_tpl->tpl_vars['movieList']->value['create_at'];
+"><h3><?php ob_start();
+echo $_smarty_tpl->tpl_vars['movieList']->value['name_tw'];
 $_prefixVariable5 = ob_get_clean();
 echo $_prefixVariable5;?>
+</h3></a>
+                        <p><?php ob_start();
+echo $_smarty_tpl->tpl_vars['movieList']->value['name_en'];
+$_prefixVariable6 = ob_get_clean();
+echo $_prefixVariable6;?>
 </p>
+                        <p><?php ob_start();
+echo $_smarty_tpl->tpl_vars['movieList']->value['createat'];
+$_prefixVariable7 = ob_get_clean();
+echo $_prefixVariable7;?>
+ 上映</p>
                     </div>
                 </div>
             </div>

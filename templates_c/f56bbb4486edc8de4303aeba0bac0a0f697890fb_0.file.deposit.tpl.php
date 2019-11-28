@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-27 10:39:58
+/* Smarty version 3.1.33, created on 2019-11-28 11:00:55
   from 'C:\xampp\htdocs\movie\templates\deposit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dde446e159163_14075533',
+  'unifunc' => 'content_5ddf9ad73b45c2_10225443',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f56bbb4486edc8de4303aeba0bac0a0f697890fb' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\deposit.tpl',
-      1 => 1574847371,
+      1 => 1574935253,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5dde446e159163_14075533 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ddf9ad73b45c2_10225443 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -65,14 +65,21 @@ $_smarty_tpl->_subTemplateRender("file:navbar.tpl", $_smarty_tpl->cache_id, $_sm
 $_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 
-    <p>儲值頁面</p>
-    <select id="amount">
-        　<option value="100">100</option>
-        　<option value="200">200</option>
-        　<option value="500">500</option>
-        　<option value="1000">1000</option>
-    </select>
-    <button id="deposit">給我錢</button>
+    <div class="container col-md-offset-5 col-md-2 input-group">
+        <h1>儲值頁面</h1>
+        <h1>
+            <select class="form-control" id="amount" style="width:auto; float: left">
+                　<option value="100">100</option>
+                　<option value="200">200</option>
+                　<option value="500">500</option>
+                　<option value="1000">1000</option>
+            </select>
+            <span class="input-group-btn">
+                <button id="deposit" class="btn btn-info">給我錢</button>
+            </span>
+
+        </h1>
+    </div>
 </body>
 </html><?php }
 }

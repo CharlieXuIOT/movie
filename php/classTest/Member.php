@@ -101,7 +101,7 @@ class Member extends Token
      */
     function deposit($_post)
     {
-        $regex = "/^[A-Za-z0-9]$/";
+        $regex = "/^[0-9]*$/";
         $_amount = $_post["amount"];
         $arr = [
             'status' => false,
@@ -109,10 +109,10 @@ class Member extends Token
         ];
 
         ## 正則驗證
-        // if (!preg_match($regex, $_amount)) {
-        //     $arr["msg"] = "set regex not pass";
-        //     return json_encode($arr);
-        // }
+        if (!preg_match($regex, $_amount)) {
+            $arr["msg"] = "set regex not pass";
+            return json_encode($arr);
+        }
 
         ## 確認token是否對應使用者
         $result = $this->checkToken();
@@ -139,7 +139,7 @@ class Member extends Token
         $sql = 'INSERT INTO `deposit` (`member_id`,`amount`,`create_at`) 
                 VALUES ((SELECT `id` FROM `member` WHERE `account` = ?),?,?)';
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sis", $result["account"], $amount, $datetime);
+        $stmt->bind_param("sis", $result["account"], $_amount, $datetime);
         if (!$stmt->execute()) {
             $arr["msg"] = "DB deposit insert fail";
             return json_encode($arr);

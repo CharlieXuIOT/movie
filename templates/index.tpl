@@ -29,11 +29,11 @@
             {foreach $movieLists as $movieList}
             <div class="col-xs-12 col-sm-12 col-md-4 movieItem">
                 <div class="thumbnail">
-                    <img src="img/{{$movieList.img}}">
+                    <a href="moviedetail.php?id={{$movieList.id}}"><img src="img/{{$movieList.img}}"></a>
                     <div class="caption">
-                        <h3>{{$movieList.name_tw}}</h3>
+                        <a href="moviedetail.php?id={{$movieList.id}}"><h3>{{$movieList.name_tw}}</h3></a>
                         <p>{{$movieList.name_en}}</p>
-                        <p>{{$movieList.create_at}}</p>
+                        <p>{{$movieList.createat}} 上映</p>
                     </div>
                 </div>
             </div>
