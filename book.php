@@ -29,5 +29,5 @@ if ($result["status"] === false) {
 } else {
     $smarty->assign("navbar", $result);
 }
-
+// https://speckyboy.com/free-shopping-cart-css-javascript/
 $smarty->display('book.tpl');

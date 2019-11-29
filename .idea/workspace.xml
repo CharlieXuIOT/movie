@@ -3,14 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="0f5fb6a5-0429-4f7f-8e6f-71ee338f000c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/deposit.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/deposit.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie.sql" beforeDir="false" afterPath="$PROJECT_DIR$/movie.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classTest/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/book.php" beforeDir="false" afterPath="$PROJECT_DIR$/book.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cache/5e13dcea40e303a51786493c970105e5b9be2b4b.register.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/cache/5e13dcea40e303a51786493c970105e5b9be2b4b.register.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviedetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/moviedetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classTest/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Token.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/deposit.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/deposit.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/book.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/moviedetail.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/moviedetail.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/476fcc6e765d23913c198b7f2f9d0fa84c97be1e_0.file.book.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/476fcc6e765d23913c198b7f2f9d0fa84c97be1e_0.file.book.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates_c/50a11f830d81e67a22e019c21787119d10c84c82_0.file.index.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/50a11f830d81e67a22e019c21787119d10c84c82_0.file.index.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/b64e301549b89f617520d7d68c389119c77bf295_0.file.moviedetail.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/b64e301549b89f617520d7d68c389119c77bf295_0.file.moviedetail.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates_c/f56bbb4486edc8de4303aeba0bac0a0f697890fb_0.file.deposit.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/f56bbb4486edc8de4303aeba0bac0a0f697890fb_0.file.deposit.tpl.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,6 +62,7 @@
       <workItem from="1574731214365" duration="26181000" />
       <workItem from="1574816884669" duration="31024000" />
       <workItem from="1574905938062" duration="24232000" />
+      <workItem from="1574990996801" duration="24479000" />
     </task>
     <servers />
   </component>

@@ -36,30 +36,42 @@
         </div>
 
         <div class="col-md-8">
+            {if !isset($tabempty)}
             <ul class="nav nav-tabs">
-                {foreach $dates as $date}
-                    <li><a data-toggle="tab" href="#{{$date}}">{{$date}}</a></li>
+                {foreach $tab_dates as $tab_date}
+                    {if $tab_date@index eq 0}
+                        <li class="active"><a data-toggle="tab" href="#{{$tab_date}}">{{$tab_date}}</a></li>
+                    {else}
+                        <li><a data-toggle="tab" href="#{{$tab_date}}">{{$tab_date}}</a></li>
+                    {/if}
                 {/foreach}
             </ul>
 
             <div class="tab-content">
-                {foreach $dates as $date}
-                    <div id="{{$date}}" class="tab-pane fade">
-                        {if isset($times)}
-                            {foreach $times as $time}
-                                {if $time.date == $date}
+                {foreach $tab_dates as $tab_date}
+                    {if $tab_date@index eq 0}
+                        <div id="{{$tab_date}}" class="tab-pane fade in active"">
+                    {else}
+                        <div id="{{$tab_date}}" class="tab-pane fade">
+                    {/if}
+                        {foreach $tab_times as $key => $tab_time}
+                            {if $tab_date == $key}
+                                {foreach $tab_time as $tab_info}
                                     <h3>
-                                        {{$time.time}}
-                                        <a href="book.php?event={{$time.id}}">
-                                            <button type="button" class="btn btn-success">訂票</button>
-                                        </a>
+                                        {{$tab_info.time}}
+                                        {if isset($tab_info.event_id)}
+                                            <a href="book.php?event={{$tab_info.event_id}}">
+                                                <button type="button" class="btn btn-success">訂票</button>
+                                            </a>
+                                        {/if}
                                     </h3>
-                                {/if}
-                            {/foreach}
-                        {/if}
+                                {/foreach}
+                            {/if}
+                        {/foreach}
                     </div>
                 {/foreach}
             </div>
+            {/if}
 
         </div>
 

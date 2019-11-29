@@ -17,7 +17,6 @@ $smarty->debugging = true;
 // $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 
-## navbar data
 $result = $member->checkToken();
 if ($result["status"] === false) {
     ## token比對使用者失敗，前端重新登入
@@ -31,23 +30,20 @@ if ($result["status"] === false) {
         header('Location: index.php');
     }
     $movieDetail = $post->moviedetail($_GET["id"]);
+
+
     if ($movieDetail["status"] === false) {
-        header('Location: index.php');
+        if ($movieDetail["msg"] === "empty") {
+            ## 未上映或已下檔
+            $smarty->assign("tabempty", 1);
+        } else {
+            ## id沒有對應的電影
+            header('Location: index.php');
+        }
+    } else {
+        $smarty->assign("tab_dates", $movieDetail["tab_date"]);
+        $smarty->assign("tab_times", $movieDetail["tab_time"]);
     }
     $smarty->assign("movieinfo", $movieDetail["movieinfo"]);
-    ## 有這部電影，但沒有上映時間
-    if (isset($movieDetail["time"])){
-        $smarty->assign("times", $movieDetail["time"]);
-    }
-
-    ## 生成有最近7天日期的方法
-    date_default_timezone_set('Asia/Taipei');
-    for($i=0;$i<6;$i++){
-        ## https://www.jb51.net/article/142318.htm
-        $dates[] = date('Y-m-d',strtotime('+' . $i .' days'));
-    };
-    $smarty->assign("dates", $dates);
-
-
 }
 $smarty->display('moviedetail.tpl');

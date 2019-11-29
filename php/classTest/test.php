@@ -181,29 +181,46 @@
 // }
 
 
-class test
-{
-    function what1($post){
-        $first = $post["firstname"];
-        echo "func call: $first";
-    }
-    function what2($post){
-        $second = $post["secondname"];
-        echo "func my: $second";
-    }
-    function what3($post){
-        echo "func name: ";
-    }
-}
+// class test
+// {
+//     function what1($post){
+//         $first = $post["firstname"];
+//         echo "func call: $first";
+//     }
+//     function what2($post){
+//         $second = $post["secondname"];
+//         echo "func my: $second";
+//     }
+//     function what3($post){
+//         echo "func name: ";
+//     }
+// }
+//
+// $test = new test();
+// if (isset($_POST["action"])) {
+//     // foreach($_POST as $key => $value){
+//     //     if ($key != "action"){
+//     //         echo $key.'=>'.$value.'<br/>';
+//     //     }
+//     // }
+//     test::{$_POST["action"]}($_POST);
+//     // $_POST["action"]($_POST["firstname"], $_POST["secondname"]);
+// }
 
-$test = new test();
-if (isset($_POST["action"])) {
-    // foreach($_POST as $key => $value){
-    //     if ($key != "action"){
-    //         echo $key.'=>'.$value.'<br/>';
-    //     }
-    // }
-    test::{$_POST["action"]}($_POST);
-    // $_POST["action"]($_POST["firstname"], $_POST["secondname"]);
+// date_default_timezone_set('Asia/Taipei');
+// echo date('H:i:s',strtotime("+1 hours"));
+
+require 'mysql_connect.php';
+require 'Token.php';
+require 'Post.php';
+$post = new Post($conn);
+$movieDetail = $post->moviedetail("67");
+$movieEvent = $movieDetail["time"];
+echo json_encode($movieEvent);
+echo "<br>";
+foreach ($movieEvent as $time) {
+    $arr[] = $time["date"];
 }
+$arr = array_unique($arr);
+echo json_encode($arr);
 ?>
