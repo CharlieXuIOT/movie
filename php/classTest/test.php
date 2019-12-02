@@ -210,17 +210,37 @@
 // date_default_timezone_set('Asia/Taipei');
 // echo date('H:i:s',strtotime("+1 hours"));
 
-require 'mysql_connect.php';
-require 'Token.php';
-require 'Post.php';
-$post = new Post($conn);
-$movieDetail = $post->moviedetail("67");
-$movieEvent = $movieDetail["time"];
-echo json_encode($movieEvent);
-echo "<br>";
-foreach ($movieEvent as $time) {
-    $arr[] = $time["date"];
+// require 'mysql_connect.php';
+// require 'Token.php';
+// require 'Post.php';
+// $post = new Post($conn);
+// $movieDetail = $post->moviedetail("67");
+// $movieEvent = $movieDetail["time"];
+// echo json_encode($movieEvent);
+// echo "<br>";
+// foreach ($movieEvent as $time) {
+//     $arr[] = $time["date"];
+// }
+// $arr = array_unique($arr);
+// echo json_encode($arr);
+
+date_default_timezone_set('Asia/Taipei');
+
+$now_date = date("Y-m-d");
+$now_time = date('H:i:s', strtotime("+1 hours"));
+$this_date = '2019-12-05';
+$this_time = '14:00:00';
+if (strtotime($now_date) > strtotime($this_date)) {
+    echo "日期過了";
+} elseif (strtotime($now_date) == strtotime($this_date)) {
+    echo "日期相同 ";
+    if (strtotime($now_time) > strtotime($this_time)) {
+        echo "時間過了";
+    } else {
+        echo "時間未到";
+    }
+} else {
+    echo "日期未到";
 }
-$arr = array_unique($arr);
-echo json_encode($arr);
+echo date('H:i', strtotime($this_time));
 ?>

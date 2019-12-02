@@ -28,6 +28,28 @@ if ($result["status"] === false) {
     header('Location: login.php');
 } else {
     $smarty->assign("navbar", $result);
+    ## 先檢查event參數
+    $regex = "/^[0-9]*$/";
+    if (!preg_match($regex, $_GET["event"])) {
+        $smarty->assign("flag_eventID", 1);
+    } else {
+        ## call 撈資料 function
+        $data = $post->book_seat($_GET["event"]);
+        ## 錯誤訊息處理
+        if ($data["status"] === false) {
+            if ($data["msg"] === "event id not correspond") {
+                ## id沒有對應場次
+                $smarty->assign("flag_eventID", 1);
+            } elseif ($data["msg"] === "play time is passed") {
+                ## 已播映完畢
+                $smarty->assign("flag_eventTime", 1);
+            }
+        } else {
+            ## 正確訊息 綁定參數
+            
+        }
+    }
+
 }
 // https://speckyboy.com/free-shopping-cart-css-javascript/
-$smarty->display('book.tpl');
+$smarty->display('book_ticket.tpl');

@@ -115,9 +115,9 @@ class Post extends Token
     }
 
     /**
-     * 訂票首頁
+     * 訂票第一頁:選票種類
      */
-    function book($id)
+    function book_ticket($id)
     {
         $regex = "/^[0-9]*$/";
         $arr = [
@@ -131,21 +131,107 @@ class Post extends Token
             return $arr;
         }
 
-        date_default_timezone_set('Asia/Taipei');
-        $now_date = date("Y-m-d");
-        $now_time = date('H:i:s', strtotime("+1 hours"));
-        $sql = "SELECT `movie_time`.* ,`movie`.`name_tw`,`movie`.`status`
+        ## 以event id撈出訂票右側需要的資料
+        ## 條件:管理員未下架、離播映時間不小於一小時
+        $sql = "SELECT `movie_time`.* ,`movie`.`name_tw`,`movie`.`name_en`
                 FROM `movie_time`, `movie`
                 WHERE `movie`.`id` = `movie_time`.`movie_id`
-                AND `movie_time`.`id` = $id
-                AND `movie`.`status` = '1'
-                AND DATE(`movie_time`.`date`) >= DATE($now_date)
-                AND TIME(`movie_time`.`time`) >= TIME($now_time)";
+                AND `movie_time`.`id` = '$id'
+                AND `movie`.`status` = '1'";
         $result = $this->conn->query($sql);
         if ($result->num_rows === 0) {
-            $arr["msg"] = "movie not exist || out of theater";
+            $arr["msg"] = "event id not correspond";
             return $arr;
         }
         $arr["movieinfo"] = $result->fetch_assoc();
+
+        ## 條件:離播映時間不小於一小時
+        date_default_timezone_set('Asia/Taipei');
+        $now_date = date("Y-m-d");
+        $now_time = date('H:i:s', strtotime("+1 hours"));
+        $this_date = $arr["movieinfo"]["date"];
+        $this_time = $arr["movieinfo"]["time"];
+        if (strtotime($now_date) > strtotime($this_date)) {
+            $arr["msg"] = "play time is passed";
+            return $arr;
+        } elseif (strtotime($now_date) == strtotime($this_date)) {
+            if (strtotime($now_time) > strtotime($this_time)) {
+                $arr["msg"] = "play time is passed";
+                return $arr;
+            }
+        }
+
+        ## 去掉時間裡的秒數
+        $arr["movieinfo"]["time"] = date('H:i', strtotime($arr["movieinfo"]["time"]));
+
+        ## 撈票種資料
+        $result = $this->conn->query("SELECT * FROM `ticket`");
+        while ($row = $result->fetch_assoc()) {
+            $arr["tickets"][] = $row;
+        }
+
+        $arr["status"] = true;
+        return $arr;
+
+    }
+
+    /**
+     * 訂票第二頁:選位置
+     */
+    function book_seat($id)
+    {
+        $regex = "/^[0-9]*$/";
+        $arr = [
+            'status' => false,
+            'msg' => '',
+        ];
+
+        ## 正則驗證
+        if (!preg_match($regex, $id)) {
+            $arr["msg"] = "set regex not pass";
+            return $arr;
+        }
+
+        ## 以event id撈出訂票右側需要的資料
+        ## 條件:管理員未下架、離播映時間不小於一小時
+        $sql = "SELECT `movie_time`.* ,`movie`.`name_tw`,`movie`.`name_en`
+                FROM `movie_time`, `movie`
+                WHERE `movie`.`id` = `movie_time`.`movie_id`
+                AND `movie_time`.`id` = '$id'
+                AND `movie`.`status` = '1'";
+        $result = $this->conn->query($sql);
+        if ($result->num_rows === 0) {
+            $arr["msg"] = "event id not correspond";
+            return $arr;
+        }
+        $arr["movieinfo"] = $result->fetch_assoc();
+
+        ## 條件:離播映時間不小於一小時
+        date_default_timezone_set('Asia/Taipei');
+        $now_date = date("Y-m-d");
+        $now_time = date('H:i:s', strtotime("+1 hours"));
+        $this_date = $arr["movieinfo"]["date"];
+        $this_time = $arr["movieinfo"]["time"];
+        if (strtotime($now_date) > strtotime($this_date)) {
+            $arr["msg"] = "play time is passed";
+            return $arr;
+        } elseif (strtotime($now_date) == strtotime($this_date)) {
+            if (strtotime($now_time) > strtotime($this_time)) {
+                $arr["msg"] = "play time is passed";
+                return $arr;
+            }
+        }
+
+        ## 去掉時間裡的秒數
+        $arr["movieinfo"]["time"] = date('H:i', strtotime($arr["movieinfo"]["time"]));
+
+        ## 撈該場座位資訊
+        $result = $this->conn->query("SELECT * FROM `seat` WHERE `event_id` = $id");
+        while ($row = $result->fetch_assoc()) {
+            $arr["seats"][] = $row;
+        }
+
+        $arr["status"] = true;
+        return $arr;
     }
 }

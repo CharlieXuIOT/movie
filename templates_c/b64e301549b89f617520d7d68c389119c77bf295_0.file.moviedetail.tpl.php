@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-29 16:52:00
+/* Smarty version 3.1.33, created on 2019-12-02 18:18:52
   from 'C:\xampp\htdocs\movie\templates\moviedetail.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de0dc30af60e9_76065313',
+  'unifunc' => 'content_5de4e50c396742_15129847',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b64e301549b89f617520d7d68c389119c77bf295' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\moviedetail.tpl',
-      1 => 1575017518,
+      1 => 1575281867,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de0dc30af60e9_76065313 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de4e50c396742_15129847 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -168,7 +168,7 @@ $_prefixVariable12 = ob_get_clean();
 echo $_prefixVariable12;?>
 
                                         <?php if (isset($_smarty_tpl->tpl_vars['tab_info']->value['event_id'])) {?>
-                                            <a href="book.php?event=<?php ob_start();
+                                            <a href="book_ticket.php?event=<?php ob_start();
 echo $_smarty_tpl->tpl_vars['tab_info']->value['event_id'];
 $_prefixVariable13 = ob_get_clean();
 echo $_prefixVariable13;?>

@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `deposit` (
-  `id` int(11) NOT NULL,
-  `member_id` int(4) NOT NULL,
-  `amount` int(5) NOT NULL,
+  `id` int(6) UNSIGNED NOT NULL,
+  `member_id` int(11) UNSIGNED NOT NULL,
+  `amount` int(5) UNSIGNED NOT NULL,
   `create_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -43,7 +43,11 @@ INSERT INTO `deposit` (`id`, `member_id`, `amount`, `create_at`) VALUES
 (12, 47, 1000, '2019-11-28 10:05:38'),
 (13, 47, 100, '2019-11-28 10:06:16'),
 (14, 47, 500, '2019-11-28 17:50:00'),
-(15, 47, 500, '2019-11-28 18:01:42');
+(15, 47, 500, '2019-11-28 18:01:42'),
+(16, 47, 500, '2019-11-29 10:21:16'),
+(17, 47, 1000, '2019-11-29 10:21:24'),
+(18, 47, 500, '2019-11-29 11:30:16'),
+(19, 47, 100, '2019-11-29 12:25:09');
 
 -- --------------------------------------------------------
 
@@ -52,7 +56,7 @@ INSERT INTO `deposit` (`id`, `member_id`, `amount`, `create_at`) VALUES
 --
 
 CREATE TABLE `member` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(6) UNSIGNED NOT NULL,
   `account` varchar(20) CHARACTER SET utf8 NOT NULL,
   `password` varchar(60) CHARACTER SET utf8 NOT NULL,
   `cash` int(10) UNSIGNED NOT NULL DEFAULT 0,
@@ -68,7 +72,7 @@ INSERT INTO `member` (`id`, `account`, `password`, `cash`, `permission`, `token`
 (41, '123', '$2y$10$3igD8jnaT/yNww3amN7Dmu6zdw7iZppcaWBBvcVS2uq96/W/PdPSq', 0, 1, ''),
 (44, '456', '$2y$10$Dv1HZM6PhwEIgLSVOpMOfuptrklq0sw7/kV.pyVykecVZ31RGelOe', 0, 1, ''),
 (46, '789', '$2y$10$tg1bVOJfsMHmo8O6HFIJvu/KgOW7DML.qbDObNqu9dNKgYwujuF8.', 0, 1, ''),
-(47, '147', '$2y$10$4iTkJlA22ezHGgHIhCZn8OXMIzKKfrKwcQq.Jp/qk/w1bllKDk80K', 1300, 2, '$2y$10$zanNbOnBmHsdRt96SRyaa.BRF5qpkXZINy3ceplFXKAh1VIZ2hO3W'),
+(47, '147', '$2y$10$4iTkJlA22ezHGgHIhCZn8OXMIzKKfrKwcQq.Jp/qk/w1bllKDk80K', 3400, 2, ''),
 (48, '111', '$2y$10$Sjrw1iPsn09NoZdTLSnkLO/TGVnyZ81NHRZm0ZLA1Fw4LzSx9XOlu', 0, 1, ''),
 (49, '222', '$2y$10$xwYrE8z0hmfg0.RBYTas3.u12A3nFvlBRanrwSqgv1iH3fGfP4Qti', 0, 1, '');
 
@@ -82,9 +86,9 @@ CREATE TABLE `movie` (
   `id` int(6) UNSIGNED NOT NULL,
   `name_tw` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `intro` varchar(2000) NOT NULL,
-  `img` varchar(65) NOT NULL,
-  `videoURL` varchar(15) NOT NULL,
+  `intro` text CHARACTER SET utf8 NOT NULL,
+  `img` varchar(65) CHARACTER SET utf8 NOT NULL,
+  `videoURL` varchar(15) CHARACTER SET utf8 NOT NULL,
   `create_at` datetime NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -127,8 +131,59 @@ INSERT INTO `movie_time` (`id`, `movie_id`, `date`, `time`) VALUES
 (12, 67, '2019-11-30', '22:00:00'),
 (13, 67, '2019-12-01', '22:00:00'),
 (14, 67, '2019-12-02', '21:00:00'),
-(15, 67, '2019-12-03', '20:00:00'),
-(16, 67, '2019-12-04', '19:00:00');
+(15, 67, '2019-12-03', '10:00:00'),
+(16, 67, '2019-12-04', '19:00:00'),
+(17, 67, '2019-12-05', '23:00:00'),
+(18, 67, '2019-12-06', '20:00:00'),
+(19, 67, '2019-11-29', '09:55:06'),
+(20, 67, '2019-11-29', '11:00:00'),
+(21, 67, '2019-11-29', '12:00:00'),
+(22, 67, '2019-11-29', '13:00:00'),
+(23, 67, '2019-12-02', '11:53:14');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `seat`
+--
+
+CREATE TABLE `seat` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `event_id` int(6) UNSIGNED NOT NULL,
+  `row` int(2) UNSIGNED NOT NULL,
+  `seat` int(2) UNSIGNED NOT NULL,
+  `member_id` int(6) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `seat`
+--
+
+INSERT INTO `seat` (`id`, `event_id`, `row`, `seat`, `member_id`) VALUES
+(1, 18, 1, 1, 47),
+(2, 18, 1, 2, 47);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `ticket`
+--
+
+CREATE TABLE `ticket` (
+  `id` int(2) UNSIGNED NOT NULL,
+  `type` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(150) CHARACTER SET utf8 NOT NULL,
+  `price` int(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `type`, `description`, `price`) VALUES
+(1, '聯名卡優惠價', '需先連結秀泰聯名卡，並以聯名卡結帳', 230),
+(2, '全票', '無使用限制', 300),
+(3, '學生優待票', '優待票包括學生票、軍警票，二歲以上且未滿十二歲之兒童需購買優待票，取票時請出示相關有效證件', 260);
 
 --
 -- 已傾印資料表的索引
@@ -138,14 +193,16 @@ INSERT INTO `movie_time` (`id`, `movie_id`, `date`, `time`) VALUES
 -- 資料表索引 `deposit`
 --
 ALTER TABLE `deposit`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member_id` (`member_id`);
 
 --
 -- 資料表索引 `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `account` (`account`);
+  ADD UNIQUE KEY `account` (`account`),
+  ADD KEY `token` (`token`);
 
 --
 -- 資料表索引 `movie`
@@ -161,6 +218,20 @@ ALTER TABLE `movie_time`
   ADD KEY `movie_id` (`movie_id`);
 
 --
+-- 資料表索引 `seat`
+--
+ALTER TABLE `seat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_id` (`event_id`),
+  ADD KEY `member_id` (`member_id`);
+
+--
+-- 資料表索引 `ticket`
+--
+ALTER TABLE `ticket`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
@@ -168,13 +239,13 @@ ALTER TABLE `movie_time`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `movie`
@@ -186,17 +257,42 @@ ALTER TABLE `movie`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `movie_time`
 --
 ALTER TABLE `movie_time`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `seat`
+--
+ALTER TABLE `seat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `id` int(2) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- 已傾印資料表的限制式
 --
 
 --
+-- 資料表的限制式 `deposit`
+--
+ALTER TABLE `deposit`
+  ADD CONSTRAINT `deposit_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
+
+--
 -- 資料表的限制式 `movie_time`
 --
 ALTER TABLE `movie_time`
   ADD CONSTRAINT `movie_time_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
+
+--
+-- 資料表的限制式 `seat`
+--
+ALTER TABLE `seat`
+  ADD CONSTRAINT `seat_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `movie_time` (`id`),
+  ADD CONSTRAINT `seat_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

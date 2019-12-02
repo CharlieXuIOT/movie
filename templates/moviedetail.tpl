@@ -60,7 +60,7 @@
                                     <h3>
                                         {{$tab_info.time}}
                                         {if isset($tab_info.event_id)}
-                                            <a href="book.php?event={{$tab_info.event_id}}">
+                                            <a href="book_ticket.php?event={{$tab_info.event_id}}">
                                                 <button type="button" class="btn btn-success">訂票</button>
                                             </a>
                                         {/if}

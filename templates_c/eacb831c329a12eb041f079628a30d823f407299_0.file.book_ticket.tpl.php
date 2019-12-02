@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-02 17:22:53
-  from 'C:\xampp\htdocs\movie\templates\book.tpl' */
+/* Smarty version 3.1.33, created on 2019-12-02 18:18:59
+  from 'C:\xampp\htdocs\movie\templates\book_ticket.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de4d7ede67df1_04301264',
+  'unifunc' => 'content_5de4e513971e69_10230127',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '476fcc6e765d23913c198b7f2f9d0fa84c97be1e' => 
+    'eacb831c329a12eb041f079628a30d823f407299' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\movie\\templates\\book.tpl',
-      1 => 1575277130,
+      0 => 'C:\\xampp\\htdocs\\movie\\templates\\book_ticket.tpl',
+      1 => 1575281925,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de4d7ede67df1_04301264 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de4e513971e69_10230127 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
