@@ -1,5 +1,5 @@
 <?php
-require_once("Session.php");
+// require_once("Session.php");
 
 class Post extends Token
 {
@@ -226,9 +226,9 @@ class Post extends Token
         $arr["movieinfo"]["time"] = date('H:i', strtotime($arr["movieinfo"]["time"]));
 
         ## 撈該場座位資訊
-        $result = $this->conn->query("SELECT * FROM `seat` WHERE `event_id` = $id");
+        $result = $this->conn->query("SELECT * FROM `book` WHERE `event_id` = $id");
         while ($row = $result->fetch_assoc()) {
-            $arr["seats"][] = $row;
+            $arr["seats"][$row["row"]][$row["seat"]] = 1;
         }
 
         $arr["status"] = true;

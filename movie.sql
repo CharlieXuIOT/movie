@@ -25,6 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `book`
+--
+
+CREATE TABLE `book` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `event_id` int(6) UNSIGNED NOT NULL,
+  `row` int(2) UNSIGNED NOT NULL,
+  `seat` int(2) UNSIGNED NOT NULL,
+  `member_id` int(6) UNSIGNED NOT NULL,
+  `ticket_id` int(2) UNSIGNED NOT NULL,
+  `ticket_price` int(3) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `book`
+--
+
+INSERT INTO `book` (`id`, `event_id`, `row`, `seat`, `member_id`, `ticket_id`, `ticket_price`) VALUES
+(1, 18, 1, 1, 47, 1, 150),
+(2, 18, 1, 7, 47, 1, 150),
+(3, 18, 4, 7, 47, 1, 150),
+(4, 18, 6, 6, 47, 1, 150);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `deposit`
 --
 
@@ -72,7 +98,7 @@ INSERT INTO `member` (`id`, `account`, `password`, `cash`, `permission`, `token`
 (41, '123', '$2y$10$3igD8jnaT/yNww3amN7Dmu6zdw7iZppcaWBBvcVS2uq96/W/PdPSq', 0, 1, ''),
 (44, '456', '$2y$10$Dv1HZM6PhwEIgLSVOpMOfuptrklq0sw7/kV.pyVykecVZ31RGelOe', 0, 1, ''),
 (46, '789', '$2y$10$tg1bVOJfsMHmo8O6HFIJvu/KgOW7DML.qbDObNqu9dNKgYwujuF8.', 0, 1, ''),
-(47, '147', '$2y$10$4iTkJlA22ezHGgHIhCZn8OXMIzKKfrKwcQq.Jp/qk/w1bllKDk80K', 3400, 2, ''),
+(47, '147', '$2y$10$4iTkJlA22ezHGgHIhCZn8OXMIzKKfrKwcQq.Jp/qk/w1bllKDk80K', 3400, 2, '$2y$10$UA6qbGut3dGlqE5tJ3A2ZORCpvnczyLk1zcqh1CWz49LWgKF98iSe'),
 (48, '111', '$2y$10$Sjrw1iPsn09NoZdTLSnkLO/TGVnyZ81NHRZm0ZLA1Fw4LzSx9XOlu', 0, 1, ''),
 (49, '222', '$2y$10$xwYrE8z0hmfg0.RBYTas3.u12A3nFvlBRanrwSqgv1iH3fGfP4Qti', 0, 1, '');
 
@@ -144,28 +170,6 @@ INSERT INTO `movie_time` (`id`, `movie_id`, `date`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `seat`
---
-
-CREATE TABLE `seat` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `event_id` int(6) UNSIGNED NOT NULL,
-  `row` int(2) UNSIGNED NOT NULL,
-  `seat` int(2) UNSIGNED NOT NULL,
-  `member_id` int(6) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- 傾印資料表的資料 `seat`
---
-
-INSERT INTO `seat` (`id`, `event_id`, `row`, `seat`, `member_id`) VALUES
-(1, 18, 1, 1, 47),
-(2, 18, 1, 2, 47);
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `ticket`
 --
 
@@ -188,6 +192,15 @@ INSERT INTO `ticket` (`id`, `type`, `description`, `price`) VALUES
 --
 -- 已傾印資料表的索引
 --
+
+--
+-- 資料表索引 `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `event_id` (`event_id`),
+  ADD KEY `member_id` (`member_id`),
+  ADD KEY `ticket_id` (`ticket_id`);
 
 --
 -- 資料表索引 `deposit`
@@ -218,14 +231,6 @@ ALTER TABLE `movie_time`
   ADD KEY `movie_id` (`movie_id`);
 
 --
--- 資料表索引 `seat`
---
-ALTER TABLE `seat`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `event_id` (`event_id`),
-  ADD KEY `member_id` (`member_id`);
-
---
 -- 資料表索引 `ticket`
 --
 ALTER TABLE `ticket`
@@ -236,10 +241,16 @@ ALTER TABLE `ticket`
 --
 
 --
+-- 使用資料表自動遞增(AUTO_INCREMENT) `book`
+--
+ALTER TABLE `book`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- 使用資料表自動遞增(AUTO_INCREMENT) `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
@@ -260,12 +271,6 @@ ALTER TABLE `movie_time`
   MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `seat`
---
-ALTER TABLE `seat`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ticket`
 --
 ALTER TABLE `ticket`
@@ -274,6 +279,14 @@ ALTER TABLE `ticket`
 --
 -- 已傾印資料表的限制式
 --
+
+--
+-- 資料表的限制式 `book`
+--
+ALTER TABLE `book`
+  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `movie_time` (`id`),
+  ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  ADD CONSTRAINT `book_ibfk_3` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`);
 
 --
 -- 資料表的限制式 `deposit`
@@ -286,13 +299,6 @@ ALTER TABLE `deposit`
 --
 ALTER TABLE `movie_time`
   ADD CONSTRAINT `movie_time_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie` (`id`);
-
---
--- 資料表的限制式 `seat`
---
-ALTER TABLE `seat`
-  ADD CONSTRAINT `seat_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `movie_time` (`id`),
-  ADD CONSTRAINT `seat_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

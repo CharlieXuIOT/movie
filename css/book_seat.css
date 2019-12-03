@@ -1,0 +1,11 @@
+.seat-sold {
+    cursor: not-allowed !important;
+}
+
+.seat-locked {
+    cursor: not-allowed !important;
+}
+
+span {
+    font-size: 24px;
+}

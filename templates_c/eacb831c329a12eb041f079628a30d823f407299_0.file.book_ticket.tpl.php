@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-02 18:18:59
+/* Smarty version 3.1.33, created on 2019-12-03 11:24:15
   from 'C:\xampp\htdocs\movie\templates\book_ticket.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de4e513971e69_10230127',
+  'unifunc' => 'content_5de5d55fc84565_12815307',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eacb831c329a12eb041f079628a30d823f407299' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\book_ticket.tpl',
-      1 => 1575281925,
+      1 => 1575343438,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de4e513971e69_10230127 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de5d55fc84565_12815307 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +45,7 @@ function content_5de4e513971e69_10230127 (Smarty_Internal_Template $_smarty_tpl)
 >
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/book.css">
+    <link rel="stylesheet" type="text/css" href="css/book_ticket.css">
 
     <?php if (isset($_smarty_tpl->tpl_vars['tokenCheckFail']->value)) {?>
         <?php echo '<script'; ?>
@@ -70,7 +70,7 @@ function content_5de4e513971e69_10230127 (Smarty_Internal_Template $_smarty_tpl)
  src="js/navbar.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- src="js/book.js"><?php echo '</script'; ?>
+ src="js/book_ticket.js"><?php echo '</script'; ?>
 >
 </head>
 <body>

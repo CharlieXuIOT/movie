@@ -12,6 +12,7 @@ $(document).ready(function () {
     $(".goSeat").click(function () { 
         var arr = new Array();
         var count = 0;
+        var total = $('#basket-total').html();
         $('.basket-product').each(function () {
             var ticketType = $(this).find("strong").text();
             var price = parseFloat($(this).children('.price').text());
@@ -26,6 +27,11 @@ $(document).ready(function () {
         });
         document.cookie = "ticket=" + JSON.stringify(arr) + ";path=/";
         document.cookie = "count=" + count + ";path=/";
+        document.cookie = "total=" + total + ";path=/";
+
+        let url = new URL(window.location.href);
+        let event = url.searchParams.get('event');
+        window.location = "book_seat.php?event=" + event;
     });
 });
 

@@ -32,11 +32,9 @@ if ($result["status"] === false) {
     $regex = "/^[0-9]*$/";
     if (!isset($_GET["event"]) || !preg_match($regex, $_GET["event"])) {
         $smarty->assign("flag_eventID", 1);
-    } elseif (!isset($_COOKIE["ticket"]) || !isset($_COOKIE["count"])) {
-        $smarty->assign("flag_ticket", 1);
     } else {
         ## call 撈資料 function
-        $data = $post->book_seat($_GET["event"]);
+        $data = $post->book_ticket($_GET["event"]);
         ## 錯誤訊息處理
         if ($data["status"] === false) {
             if ($data["msg"] === "event id not correspond") {
@@ -48,11 +46,13 @@ if ($result["status"] === false) {
             }
         } else {
             ## 正確訊息 綁定參數
-            $smarty->assign("all", $data);
-            $smarty->assign("waitBook", $_COOKIE["count"]);
+            $smarty->assign("movieinfo", $data["movieinfo"]);
+            $smarty->assign("tickets", json_decode($_COOKIE["ticket"], true));
+            $smarty->assign("seats", json_decode($_COOKIE["seats"], true));
+            $smarty->assign("total", $_COOKIE["total"]);
         }
     }
 
 }
 // https://speckyboy.com/free-shopping-cart-css-javascript/
-$smarty->display('book_seat.tpl');
+$smarty->display('book_checkout.tpl');

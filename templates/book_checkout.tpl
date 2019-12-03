@@ -15,8 +15,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/book_ticket.css">
-    <link rel="stylesheet" type="text/css" href="css/book_seat.css">
+    <link rel="stylesheet" type="text/css" href="css/book_checkout.css">
 
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
@@ -30,39 +29,55 @@
             alert("本場次已播映完畢!");
             window.location = "index.php";
         </script>
-    {elseif isset($flag_ticket)}
-        <script>
-            alert("尚未選擇票種數量!");
-            window.location = "index.php";
-        </script>
     {/if}
     <script src="js/navbar.js"></script>
-    <script src="js/book_seat.js"></script>
+    <script src="js/book_checkout.js"></script>
 </head>
 <body>
 {{include file="navbar.tpl"}}
-<div class="row">
-    <div class="col-md-5 col-md-offset-4">
-        <span class="col-md-offset-1">還有 <a style="display: inline" id="waitBook">{{$waitBook}}</a> 個座位待劃位</p>
-        <br>
-        {for $i=1 to 9}
-            <div class="{{$i}}" class="col-md-offset-2">
-                <span style="float: left">{{$i}}排</span>
-                    {for $j=1 to 9}
-                        {if isset($all.seats.$i.$j)}
-                            <button type="button" class="btn btn-danger seat-sold">{{$j}}</button>
-                        {else}
-                            <button type="button" class="btn btn-default">{{$j}}</button>
-                        {/if}
-                    {/for}
-                <span>{{$i}}排</span>
-                <br><br>
-            </div>
-        {/for}
-        <div class="col-md-offset-5">
-            <button type="button" class="btn btn-primary" id="checkout">結帳</button>
-        </div>
+
+<div class="summary">
+    <div class="summary-total">
+        <div class="total-title">電影名稱</div>
     </div>
+    <p>{{$movieinfo.name_tw}}</p>
+    <p>{{$movieinfo.name_en}}</p>
+
+    <div class="summary-total">
+        <div class="total-title">場次時間</div>
+    </div>
+    <p>{{$movieinfo.date}} {{$movieinfo.time}}</p>
+
+    <div class="summary-total">
+        <div class="total-title">票種/數量</div>
+    </div>
+    <div class="whatubuy">
+        {foreach $tickets as $ticket}
+            <p>{{$ticket.ticketType}} x {{$ticket.quantity}}</p>
+        {/foreach}
+    </div>
+
+    <div class="summary-total">
+        <div class="total-title">座位</div>
+    </div>
+    <div class="whereusit">
+        <p>
+            {foreach $seats as $seat}
+                {{$seat.row}}排{{$seat.seat}}號&nbsp
+            {/foreach}
+        </p>
+    </div>
+
+    <div class="summary-total">
+        <div class="total-title">總計</div>
+        <div class="total-value final-value" id="basket-total">${{$total}}</div>
+    </div>
+</div>
+
+<br>
+
+<div class="text-center">
+    <button type="button" class="btn btn-primary" id="checkout">付款</button>
 </div>
 
 </body>

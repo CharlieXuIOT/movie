@@ -15,7 +15,7 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/book.css">
+    <link rel="stylesheet" type="text/css" href="css/book_ticket.css">
 
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
@@ -31,7 +31,7 @@
         </script>
     {/if}
     <script src="js/navbar.js"></script>
-    <script src="js/book.js"></script>
+    <script src="js/book_ticket.js"></script>
 </head>
 <body>
 {{include file="navbar.tpl"}}

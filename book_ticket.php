@@ -30,7 +30,7 @@ if ($result["status"] === false) {
     $smarty->assign("navbar", $result);
     ## 先檢查event參數
     $regex = "/^[0-9]*$/";
-    if (!preg_match($regex, $_GET["event"])) {
+    if (!isset($_GET["event"]) || !preg_match($regex, $_GET["event"])) {
         $smarty->assign("flag_eventID", 1);
     } else {
         ## call 撈資料 function
