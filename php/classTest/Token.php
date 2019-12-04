@@ -82,4 +82,18 @@ class Token
         }
         return json_encode($arr);
     }
+
+    /**
+     * 清除cookie中有關訂票的暫存
+     */
+    function cleanBookCookie()
+    {
+        $arr = array("ticket", "count", "total", "seats");
+        foreach ($arr as $item) {
+            if (isset($_COOKIE[$item])) {
+                setcookie($item, "", time()-1, "/");
+            }
+        }
+        return "ok";
+    }
 }

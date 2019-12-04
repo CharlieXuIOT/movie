@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f5fb6a5-0429-4f7f-8e6f-71ee338f000c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book_seat.php" beforeDir="false" afterPath="$PROJECT_DIR$/book_seat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/book_ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/book_ticket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/book.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/book_ticket.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/book.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/book_ticket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/book_checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/book_checkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/book_seat.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/book_seat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/book_ticket.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/book_ticket.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/moviedetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/moviedetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Member.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classTest/mysql_connect.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/mysql_connect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/classTest/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Token.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/book_seat.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_seat.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/book_ticket.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_ticket.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/eacb831c329a12eb041f079628a30d823f407299_0.file.book_ticket.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/eacb831c329a12eb041f079628a30d823f407299_0.file.book_ticket.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/book_checkout.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_checkout.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.tpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/8f60cb02fcd1980582db3c6b2005119fc2dea169_0.file.navbar.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/8f60cb02fcd1980582db3c6b2005119fc2dea169_0.file.navbar.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates_c/a9a7dda71b8b7e2a75871a74b7582b556f33a0f8_0.file.book_checkout.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/a9a7dda71b8b7e2a75871a74b7582b556f33a0f8_0.file.book_checkout.tpl.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +40,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Rainbow Brackets" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -64,7 +70,9 @@
       <workItem from="1574905938062" duration="24232000" />
       <workItem from="1574990996801" duration="24788000" />
       <workItem from="1575249795283" duration="22417000" />
-      <workItem from="1575336364157" duration="18047000" />
+      <workItem from="1575336364157" duration="18832000" />
+      <workItem from="1575422513671" duration="3701000" />
+      <workItem from="1575427039429" duration="26200000" />
     </task>
     <servers />
   </component>

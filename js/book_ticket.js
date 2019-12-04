@@ -3,40 +3,52 @@ var fadeTime = 300;
 
 $(document).ready(function () {
     $('.goSeat').hide();
+    
+    $('select').each(function () {
+        $(this).val(0).change();
+    });
 
     /* Assign actions */
     $('select').change(function () {
         updateQuantity(this);
     });
 
-    $(".goSeat").click(function () { 
-        var arr = new Array();
-        var count = 0;
-        var total = $('#basket-total').html();
-        $('.basket-product').each(function () {
-            var ticketType = $(this).find("strong").text();
-            var price = parseFloat($(this).children('.price').text());
-            var quantity = $(this).find("select").val();
-            if (quantity !== "0") {
-                arr.push({
-                    'ticketType':ticketType,
-                    'quantity':quantity
-                })
-                count += parseInt(quantity);
-            }
-        });
-        document.cookie = "ticket=" + JSON.stringify(arr) + ";path=/";
-        document.cookie = "count=" + count + ";path=/";
-        document.cookie = "total=" + total + ";path=/";
+    $(".goSeat").click(function () {
+        member_cash = parseInt($("#navCash").text());
+        ticket_cash = parseInt($("#basket-total").text());
+        if (ticket_cash > member_cash) {
+            alert("餘額不足!");
+            window.location = "deposit.php";
+        } else {
+            var arr = new Array();
+            var count = 0;
+            var total = $('#basket-total').html();
+            $('.basket-product').each(function () {
+                var ticketType = $(this).find("strong").text();
+                var price = parseFloat($(this).children('.price').text());
+                var quantity = $(this).find("select").val();
+                if (quantity !== "0") {
+                    arr.push({
+                        'ticketType':ticketType,
+                        'quantity':quantity,
+                        'price':price
+                    });
+                    count += parseInt(quantity);
+                }
+            });
+            document.cookie = "ticket=" + JSON.stringify(arr) + ";path=/";
+            document.cookie = "count=" + count + ";path=/";
+            document.cookie = "total=" + total + ";path=/";
 
-        let url = new URL(window.location.href);
-        let event = url.searchParams.get('event');
-        window.location = "book_seat.php?event=" + event;
+            let url = new URL(window.location.href);
+            let event = url.searchParams.get('event');
+            window.location = "book_seat.php?event=" + event;
+        }
     });
 });
 
 /* Recalculate cart */
-function recalculateCart(onlyTotal) {
+function recalculateCart() {
     var subtotal = 0;
 
     /* Sum up row totals */

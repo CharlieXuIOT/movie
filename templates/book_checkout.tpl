@@ -63,7 +63,7 @@
     <div class="whereusit">
         <p>
             {foreach $seats as $seat}
-                {{$seat.row}}排{{$seat.seat}}號&nbsp
+                {{$seat.row}}排{{$seat.number}}號&nbsp
             {/foreach}
         </p>
     </div>

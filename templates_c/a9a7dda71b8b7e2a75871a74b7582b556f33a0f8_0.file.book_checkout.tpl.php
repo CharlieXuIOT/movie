@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-03 16:05:43
+/* Smarty version 3.1.33, created on 2019-12-04 14:57:54
   from 'C:\xampp\htdocs\movie\templates\book_checkout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de617575a5999_21280001',
+  'unifunc' => 'content_5de758f26290a3_56282507',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a9a7dda71b8b7e2a75871a74b7582b556f33a0f8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\book_checkout.tpl',
-      1 => 1575360180,
+      1 => 1575440319,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de617575a5999_21280001 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de758f26290a3_56282507 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -147,7 +147,7 @@ echo $_smarty_tpl->tpl_vars['seat']->value['row'];
 $_prefixVariable8 = ob_get_clean();
 echo $_prefixVariable8;?>
 排<?php ob_start();
-echo $_smarty_tpl->tpl_vars['seat']->value['seat'];
+echo $_smarty_tpl->tpl_vars['seat']->value['number'];
 $_prefixVariable9 = ob_get_clean();
 echo $_prefixVariable9;?>
 號&nbsp

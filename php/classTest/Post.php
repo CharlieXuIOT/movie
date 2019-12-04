@@ -12,11 +12,6 @@ class Post extends Token
         $this->conn = $conn;
     }
 
-    function __destruct()
-    {
-        ## TODO: Implement __destruct() method.
-    }
-
     function index($page)
     {
         ## 回應的陣列
@@ -226,9 +221,12 @@ class Post extends Token
         $arr["movieinfo"]["time"] = date('H:i', strtotime($arr["movieinfo"]["time"]));
 
         ## 撈該場座位資訊
-        $result = $this->conn->query("SELECT * FROM `book` WHERE `event_id` = $id");
+        $result = $this->conn->query("SELECT `book_seat`.`row`,`book_seat`.`number`
+                                        FROM `book_info`,`book_seat`
+                                        WHERE `book_info`.`id`=`book_seat`.`book_id`
+                                        AND `book_info`.`event_id`=$id");
         while ($row = $result->fetch_assoc()) {
-            $arr["seats"][$row["row"]][$row["seat"]] = 1;
+            $arr["seats"][$row["row"]][$row["number"]] = 1;
         }
 
         $arr["status"] = true;

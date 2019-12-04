@@ -151,23 +151,4 @@ class Member extends Token
 
         return json_encode($arr);
     }
-
-    /**
-     * 訂票
-     */
-    function book($post)
-    {
-        $token = $post["token"];
-        $ticket = json_decode($post["ticket"]);
-        $seat = json_decode($post["seat"]);
-        $total = $post["total"];
-        // 記得要補身分驗證
-        mysqli_begin_transaction($this->conn, MYSQLI_TRANS_START_READ_WRITE);
-        if(!mysqli_query($this->conn, "INSERT INTO `deposit` (`member_id`,`amount`) VALUES ('47','123')"))
-        {
-            mysqli_query($this->conn, "ROLLBACK");     // 判断当执行失败时回滚
-        }
-        mysqli_commit($this->conn);            //执行事务
-        mysqli_close($this->conn);
-    }
 }

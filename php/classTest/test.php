@@ -244,11 +244,24 @@
 // }
 // echo date('H:i', strtotime($this_time));
 
-require_once ("mysql_connect.php");
-require_once ("Member.php");
-require_once ("Post.php");
+// require_once ("mysql_connect.php");
+// require_once ("Book.php");
+//
+// $book = new Book($conn);
+//
+// $arr = array();
+// $arr[] = ["id"=>1, "row"=>1, "seat"=>1];
+// $arr[] = ["id"=>89, "row"=>2, "seat"=>3];
+//
+// $result = $book->checkout($arr);
 
-$member = new Member($conn);
-$member->book("123");
-echo "456";
+// 刪購票cookie
+require_once ("mysql_connect.php");
+require_once ("Token.php");
+$token = new Token($conn);
+$result = $token->cleanBookCookie();
+if ($result === "ok") {
+    echo "ok";
+}
+
 ?>

@@ -25,28 +25,104 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `book`
+-- 資料表結構 `book_info`
 --
 
-CREATE TABLE `book` (
+CREATE TABLE `book_info` (
   `id` int(10) UNSIGNED NOT NULL,
   `event_id` int(6) UNSIGNED NOT NULL,
-  `row` int(2) UNSIGNED NOT NULL,
-  `seat` int(2) UNSIGNED NOT NULL,
   `member_id` int(6) UNSIGNED NOT NULL,
-  `ticket_id` int(2) UNSIGNED NOT NULL,
-  `ticket_price` int(3) UNSIGNED NOT NULL
+  `create_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `book`
+-- 傾印資料表的資料 `book_info`
 --
 
-INSERT INTO `book` (`id`, `event_id`, `row`, `seat`, `member_id`, `ticket_id`, `ticket_price`) VALUES
-(1, 18, 1, 1, 47, 1, 150),
-(2, 18, 1, 7, 47, 1, 150),
-(3, 18, 4, 7, 47, 1, 150),
-(4, 18, 6, 6, 47, 1, 150);
+INSERT INTO `book_info` (`id`, `event_id`, `member_id`, `create_at`) VALUES
+(14, 18, 47, '2019-12-04 15:10:34'),
+(24, 18, 47, '2019-12-04 15:44:28'),
+(25, 18, 47, '2019-12-04 15:45:43'),
+(28, 18, 47, '2019-12-04 16:48:59'),
+(29, 18, 47, '2019-12-04 17:56:38'),
+(32, 18, 47, '2019-12-04 18:03:21'),
+(33, 18, 47, '2019-12-04 18:41:07');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `book_seat`
+--
+
+CREATE TABLE `book_seat` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `book_id` int(10) UNSIGNED NOT NULL,
+  `row` int(2) UNSIGNED NOT NULL,
+  `number` int(2) UNSIGNED NOT NULL,
+  `create_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `book_seat`
+--
+
+INSERT INTO `book_seat` (`id`, `book_id`, `row`, `number`, `create_at`) VALUES
+(34, 14, 3, 4, '2019-12-04 15:10:34'),
+(35, 14, 3, 5, '2019-12-04 15:10:35'),
+(36, 14, 3, 6, '2019-12-04 15:10:35'),
+(37, 14, 4, 4, '2019-12-04 15:10:35'),
+(38, 14, 4, 5, '2019-12-04 15:10:35'),
+(39, 14, 4, 6, '2019-12-04 15:10:35'),
+(40, 24, 5, 3, '2019-12-04 15:44:28'),
+(41, 24, 5, 4, '2019-12-04 15:44:28'),
+(42, 24, 5, 5, '2019-12-04 15:44:28'),
+(43, 24, 5, 6, '2019-12-04 15:44:28'),
+(44, 24, 5, 7, '2019-12-04 15:44:28'),
+(45, 25, 6, 5, '2019-12-04 15:45:43'),
+(46, 25, 7, 5, '2019-12-04 15:45:43'),
+(47, 28, 8, 5, '2019-12-04 16:48:59'),
+(48, 29, 2, 5, '2019-12-04 17:56:38'),
+(49, 32, 5, 1, '2019-12-04 18:03:21'),
+(50, 32, 5, 2, '2019-12-04 18:03:21'),
+(51, 32, 5, 8, '2019-12-04 18:03:21'),
+(52, 32, 5, 9, '2019-12-04 18:03:21'),
+(53, 33, 6, 1, '2019-12-04 18:41:07'),
+(54, 33, 6, 2, '2019-12-04 18:41:07'),
+(55, 33, 6, 8, '2019-12-04 18:41:07'),
+(56, 33, 6, 9, '2019-12-04 18:41:07');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `book_ticket`
+--
+
+CREATE TABLE `book_ticket` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `book_id` int(10) UNSIGNED NOT NULL,
+  `ticket_id` int(2) UNSIGNED NOT NULL,
+  `sheet` enum('1','2','3','4','5','6') NOT NULL,
+  `ticket_price` int(8) UNSIGNED NOT NULL,
+  `create_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `book_ticket`
+--
+
+INSERT INTO `book_ticket` (`id`, `book_id`, `ticket_id`, `sheet`, `ticket_price`, `create_at`) VALUES
+(18, 14, 1, '3', 230, '2019-12-04 15:10:34'),
+(19, 14, 2, '3', 300, '2019-12-04 15:10:34'),
+(38, 24, 1, '2', 230, '2019-12-04 15:44:28'),
+(39, 24, 2, '3', 300, '2019-12-04 15:44:28'),
+(40, 25, 1, '2', 230, '2019-12-04 15:45:43'),
+(41, 25, 2, '1', 300, '2019-12-04 16:38:32'),
+(42, 25, 2, '1', 300, '2019-12-04 16:43:26'),
+(43, 25, 2, '1', 300, '2019-12-04 16:46:05'),
+(44, 28, 1, '1', 230, '2019-12-04 16:48:59'),
+(45, 29, 2, '1', 230, '2019-12-04 17:56:38'),
+(46, 32, 1, '4', 230, '2019-12-04 18:03:21'),
+(47, 33, 1, '4', 230, '2019-12-04 18:41:07');
 
 -- --------------------------------------------------------
 
@@ -73,7 +149,8 @@ INSERT INTO `deposit` (`id`, `member_id`, `amount`, `create_at`) VALUES
 (16, 47, 500, '2019-11-29 10:21:16'),
 (17, 47, 1000, '2019-11-29 10:21:24'),
 (18, 47, 500, '2019-11-29 11:30:16'),
-(19, 47, 100, '2019-11-29 12:25:09');
+(19, 47, 100, '2019-11-29 12:25:09'),
+(23, 47, 1000, '2019-12-04 18:40:32');
 
 -- --------------------------------------------------------
 
@@ -98,7 +175,7 @@ INSERT INTO `member` (`id`, `account`, `password`, `cash`, `permission`, `token`
 (41, '123', '$2y$10$3igD8jnaT/yNww3amN7Dmu6zdw7iZppcaWBBvcVS2uq96/W/PdPSq', 0, 1, ''),
 (44, '456', '$2y$10$Dv1HZM6PhwEIgLSVOpMOfuptrklq0sw7/kV.pyVykecVZ31RGelOe', 0, 1, ''),
 (46, '789', '$2y$10$tg1bVOJfsMHmo8O6HFIJvu/KgOW7DML.qbDObNqu9dNKgYwujuF8.', 0, 1, ''),
-(47, '147', '$2y$10$4iTkJlA22ezHGgHIhCZn8OXMIzKKfrKwcQq.Jp/qk/w1bllKDk80K', 3400, 2, '$2y$10$UA6qbGut3dGlqE5tJ3A2ZORCpvnczyLk1zcqh1CWz49LWgKF98iSe'),
+(47, '147', '$2y$10$4iTkJlA22ezHGgHIhCZn8OXMIzKKfrKwcQq.Jp/qk/w1bllKDk80K', 860, 2, '$2y$10$rm2LFMus5TWkhyHrFAwTJeL61BZDxaJqcax5V0E5TgYFexFf8vrxS'),
 (48, '111', '$2y$10$Sjrw1iPsn09NoZdTLSnkLO/TGVnyZ81NHRZm0ZLA1Fw4LzSx9XOlu', 0, 1, ''),
 (49, '222', '$2y$10$xwYrE8z0hmfg0.RBYTas3.u12A3nFvlBRanrwSqgv1iH3fGfP4Qti', 0, 1, '');
 
@@ -194,13 +271,27 @@ INSERT INTO `ticket` (`id`, `type`, `description`, `price`) VALUES
 --
 
 --
--- 資料表索引 `book`
+-- 資料表索引 `book_info`
 --
-ALTER TABLE `book`
+ALTER TABLE `book_info`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `event_id` (`event_id`),
   ADD KEY `member_id` (`member_id`),
-  ADD KEY `ticket_id` (`ticket_id`);
+  ADD KEY `event_id` (`event_id`);
+
+--
+-- 資料表索引 `book_seat`
+--
+ALTER TABLE `book_seat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `book_id` (`book_id`);
+
+--
+-- 資料表索引 `book_ticket`
+--
+ALTER TABLE `book_ticket`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ticket_id` (`ticket_id`),
+  ADD KEY `book_id` (`book_id`);
 
 --
 -- 資料表索引 `deposit`
@@ -234,23 +325,36 @@ ALTER TABLE `movie_time`
 -- 資料表索引 `ticket`
 --
 ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `type` (`type`);
 
 --
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `book`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `book_info`
 --
-ALTER TABLE `book`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `book_info`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `book_seat`
+--
+ALTER TABLE `book_seat`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `book_ticket`
+--
+ALTER TABLE `book_ticket`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `deposit`
 --
 ALTER TABLE `deposit`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
@@ -281,12 +385,24 @@ ALTER TABLE `ticket`
 --
 
 --
--- 資料表的限制式 `book`
+-- 資料表的限制式 `book_info`
 --
-ALTER TABLE `book`
-  ADD CONSTRAINT `book_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `movie_time` (`id`),
-  ADD CONSTRAINT `book_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
-  ADD CONSTRAINT `book_ibfk_3` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`);
+ALTER TABLE `book_info`
+  ADD CONSTRAINT `book_info_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`),
+  ADD CONSTRAINT `book_info_ibfk_2` FOREIGN KEY (`event_id`) REFERENCES `movie_time` (`id`);
+
+--
+-- 資料表的限制式 `book_seat`
+--
+ALTER TABLE `book_seat`
+  ADD CONSTRAINT `book_seat_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book_info` (`id`);
+
+--
+-- 資料表的限制式 `book_ticket`
+--
+ALTER TABLE `book_ticket`
+  ADD CONSTRAINT `book_ticket_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book_info` (`id`),
+  ADD CONSTRAINT `book_ticket_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`);
 
 --
 -- 資料表的限制式 `deposit`

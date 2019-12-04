@@ -28,10 +28,10 @@ $(document).ready(function () {
             var arr = new Array();
             $(".btn-success").each(function(){
                 let row = $(this).parent().attr("class");
-                let seat = $(this).html();
+                let number = $(this).html();
                 arr.push({
                     'row':row,
-                    'seat':seat
+                    'number':number
                 })
             });
             document.cookie = "seats=" + JSON.stringify(arr) + ";path=/";

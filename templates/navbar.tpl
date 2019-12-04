@@ -6,7 +6,18 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 {if {{$navbar.permission}} == 2}
-                    <li><a id="navAdmin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>
+{*                    <li><a id="navAdmin"><span class="glyphicon glyphicon-wrench"></span> Admin</a></li>*}
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="navAdmin" style="cursor: pointer">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="manager_member.php">會員管理</a></li>
+                            <li><a href="manager_movie.php">電影上下架</a></li>
+                        </ul>
+                    </li>
                 {/if}
 
                 {if {{$navbar.permission}} == 0}
@@ -17,7 +28,7 @@
                 {/if}
 
                 {if {{$navbar.permission}} >= 1}
-                    <li><a id="navAccount">Welcome, {{$navbar.account}} </a></li>
+                    <li><a id="navAccount" style="cursor: default">Welcome, {{$navbar.account}} </a></li>
                     <li>
                         <a id="navCash" href="deposit.php"><span
                                     class="glyphicon glyphicon-usd"></span>{{$navbar.cash}}</a>

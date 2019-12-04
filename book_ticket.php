@@ -27,8 +27,11 @@ if ($result["status"] === false) {
     ## 遊客
     header('Location: login.php');
 } else {
+    ## 進入此頁時刪掉訂票相關cookie(避免情形:使用者上筆訂票失敗，cookie留存)
+    $post->cleanBookCookie();
+
     $smarty->assign("navbar", $result);
-    ## 先檢查event參數
+    ## 檢查event參數
     $regex = "/^[0-9]*$/";
     if (!isset($_GET["event"]) || !preg_match($regex, $_GET["event"])) {
         $smarty->assign("flag_eventID", 1);
