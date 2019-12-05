@@ -26,6 +26,9 @@ if ($result["status"] === false) {
 } elseif ($result["permission"] === 0) {
     ## 遊客
     header('Location: login.php');
+} elseif ($result["permission"] === -1) {
+    ## 被停權會員
+    header('Location: index.php');
 } else {
     ## 進入此頁時刪掉訂票相關cookie(避免情形:使用者上筆訂票失敗，cookie留存)
     $post->cleanBookCookie();

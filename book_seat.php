@@ -23,9 +23,9 @@ $result = $member->checkToken();
 if ($result["status"] === false) {
     ## token比對使用者失敗，前端重新登入
     $smarty->assign("tokenCheckFail", 1);
-} elseif ($result["permission"] === 0) {
-    ## 遊客
-    header('Location: login.php');
+} elseif ($result["permission"] === 0 || $result["permission"] === -1) {
+    ## 遊客或者被停權會員
+    header('Location: index.php');
 } else {
     $smarty->assign("navbar", $result);
     ## 先檢查event參數

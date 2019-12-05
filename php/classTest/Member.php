@@ -151,4 +151,35 @@ class Member extends Token
 
         return json_encode($arr);
     }
+
+    /**
+     * 管理:會員停權
+     */
+    function manager_member($post)
+    {
+        $id = $post["id"];
+        $permission = $post["permission"];
+        $arr = [
+            'status' => false,
+            'msg' => '',
+        ];
+
+        ## 檢查權限
+        $result = $this->checkToken();
+        if ($result["permission"] < 2) {
+            $arr["msg"] = "Permission denied";
+            return $arr;
+        }
+
+        ## 更改權限
+        $sql = "UPDATE `member` SET `permission` = ? WHERE `member`.`id` = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("ss", $permission, $id);
+        if (!$stmt->execute()) {
+            $arr["msg"] = "Permission update fail";
+            return json_encode($arr);
+        }
+        $arr["status"] = true;
+        return json_encode($arr);
+    }
 }

@@ -20,7 +20,7 @@
         <script src="js/tokenCheckFail.js"></script>
     {/if}
     <script src="js/navbar.js"></script>
-    <script src="js/manager_member.js"></script>
+    <script src="js/manager_movie.js"></script>
 
     <style>
         body {
@@ -30,38 +30,33 @@
 </head>
 <body>
 {{include file="navbar.tpl"}}
-<div class="container">
-    <h2>會員管理</h2>
-    <button type="button" class="btn btn-warning" id="quicksearch">快搜停權帳號</button>
+<div class="container" style="max-width: 800px">
+    <h2>電影上下架</h2>
     <table id="myTable" class="table order-list">
         <thead>
         <tr>
-            <td>帳號</td>
-            <td>權限</td>
-            <td>最後登入時間</td>
+            <td class="col-md-8">影片名稱</td>
+            <td class="col-md-2">影片狀態</td>
         </tr>
         </thead>
         <tbody>
-        {foreach $members as $member}
-            <tr id="{{$member.id}}">
-                <td class="col-sm-3">
-                    <p>{{$member.account}}</p>
+        {foreach $movies as $movie}
+            <tr id="{{$movie.id}}">
+                <td class="col-md-8">
+                    <p>{{$movie.name_tw}}</p>
                 </td>
-                <td class="col-sm-3 level">
-                    {if ($member.permission === "1")}
-                        <p style="color: green">{{$member.level}}</p>
-                    {elseif ($member.permission === "-1")}
-                        <p style="color: red">{{$member.level}}</p>
+                <td class="col-md-2">
+                    {if ($movie.status === "1")}
+                        <p style="color: green">{{$movie.level}}</p>
+                    {elseif ($movie.status === "0")}
+                        <p style="color: red">{{$movie.level}}</p>
                     {/if}
                 </td>
-                <td class="col-sm-3">
-                    <p>{{$member.last_login}}</p>
-                </td>
-                <td class="col-sm-3 switch">
-                    {if ($member.permission === "1")}
-                        <input type="button" class="btn btn-danger btnn suspend" value="停權">
-                    {elseif ($member.permission === "-1")}
-                        <input type="button" class="btn btn-info btnn lift" value="解除">
+                <td class="col-md-2 switch">
+                    {if ($movie.status === "1")}
+                        <input type="button" class="btn btn-danger btnn suspend" value="下架">
+                    {elseif ($movie.status === "0")}
+                        <input type="button" class="btn btn-info btnn lift" value="上架">
                     {/if}
                 </td>
             </tr>

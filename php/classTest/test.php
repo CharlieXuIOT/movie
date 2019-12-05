@@ -256,12 +256,18 @@
 // $result = $book->checkout($arr);
 
 // 刪購票cookie
-require_once ("mysql_connect.php");
-require_once ("Token.php");
-$token = new Token($conn);
-$result = $token->cleanBookCookie();
-if ($result === "ok") {
-    echo "ok";
-}
+// require_once ("mysql_connect.php");
+// require_once ("Token.php");
+// $token = new Token($conn);
+// $result = $token->cleanBookCookie();
+// if ($result === "ok") {
+//     echo "ok";
+// }
 
+// 驗證class內的function是否存在
+require_once("mysql_connect.php");
+require_once("Book.php");
+
+$book = new Book($conn);
+var_dump(method_exists($book, 'checkout'));
 ?>

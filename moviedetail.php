@@ -34,6 +34,10 @@ if ($result["status"] === false) {
     }
     $movieDetail = $post->moviedetail($_GET["id"]);
 
+    ## 當停權會員點選訂票時，觸發帶提醒的js
+    if ($result["permission"] < 0) {
+        $smarty->assign("permission_deny", 1);
+    }
 
     if ($movieDetail["status"] === false) {
         if ($movieDetail["msg"] === "empty") {

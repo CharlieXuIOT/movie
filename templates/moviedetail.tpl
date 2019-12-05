@@ -19,6 +19,10 @@
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
     {/if}
+
+    {if isset($permission_deny)}
+        <script src="js/permission_deny.js"></script>
+    {/if}
     <script src="js/navbar.js"></script>
 </head>
 <body>

@@ -27,7 +27,7 @@
                                     class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 {/if}
 
-                {if {{$navbar.permission}} >= 1}
+                {if {{$navbar.permission}} >= 1 || {{$navbar.permission}} == -1}
                     <li><a id="navAccount" style="cursor: default">Welcome, {{$navbar.account}} </a></li>
                     <li>
                         <a id="navCash" href="deposit.php"><span

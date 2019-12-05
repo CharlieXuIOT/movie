@@ -26,8 +26,8 @@ if ($result["status"] === false) {
 } else {
     $smarty->assign("navbar", $result);
 
-    $member = $post->manager_member();
-    $smarty->assign("members", $member["data"]);
+    $movies = $post->manager_movie();
+    $smarty->assign("movies", $movies["data"]);
 }
 
-$smarty->display('manager_member.tpl');
+$smarty->display('manager_movie.tpl');

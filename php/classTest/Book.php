@@ -44,6 +44,22 @@ class Book extends Token
             ## turn on transactions
             $this->conn->autocommit(FALSE);
 
+            ## step0. 檢查電影狀態
+            $sql0 = "SELECT `movie`.`status` FROM `movie`,`movie_time` 
+                        WHERE `movie`.`id` = `movie_time`.`movie_id` 
+                        AND `movie_time`.`id` = ?";
+            $stmt0 = $this->conn->prepare($sql0);
+            $stmt0->bind_param("s", $event);
+            if (!$stmt0->execute()) {
+                throw new Exception(htmlspecialchars($stmt0->error));
+            };
+            $stmt0->bind_result($status);
+            $stmt0->fetch();
+            $stmt0->close();
+            if ($status == "0") {
+                throw new Exception(htmlspecialchars("MyErrorCode:Please check movie status"));
+            };
+
             ## step1. book_info建單
             $sql1 = "INSERT INTO `book_info` (`event_id`,`member_id`) 
                         VALUES (?,(SELECT `member`.`id` FROM `member` WHERE `member`.`account` = ?))";

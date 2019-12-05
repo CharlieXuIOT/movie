@@ -1,5 +1,5 @@
 <?php
-// require_once("Session.php");
+require_once("Token.php");
 
 class Post extends Token
 {
@@ -229,6 +229,83 @@ class Post extends Token
             $arr["seats"][$row["row"]][$row["number"]] = 1;
         }
 
+        $arr["status"] = true;
+        return $arr;
+    }
+
+    /**
+     * 管理頁面:會員
+     */
+    function manager_member()
+    {
+        $arr = [
+            'status' => false,
+            'msg' => '',
+        ];
+
+        ## 檢查權限
+        $result = $this->checkToken();
+        if ($result["permission"] < 2) {
+            $arr["msg"] = "Permission denied";
+            return $arr;
+        }
+
+        ## 撈資料
+        $sql = "SELECT `id`,`account`,`permission`,`last_login` FROM `member` WHERE `permission` <> '2'";
+        $result = $this->conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            switch ($row["permission"]) {
+                case "2":
+                    $row["level"] = "管理者";
+                    break;
+
+                case "1":
+                    $row["level"] = "一般會員";
+                    break;
+
+                case "-1":
+                    $row["level"] = "停權會員";
+                    break;
+            }
+            $arr["data"][] = $row;
+        }
+        $arr["status"] = true;
+        return $arr;
+    }
+
+    /**
+     * 管理頁面:電影
+     */
+    function manager_movie()
+    {
+        $arr = [
+            'status' => false,
+            'msg' => '',
+        ];
+
+        ## 檢查權限
+        $result = $this->checkToken();
+
+        if ($result["permission"] !== 2) {
+            $arr["msg"] = "Permission denied";
+            return $arr;
+        }
+
+        ## 撈資料
+        $sql = "SELECT `id`,`name_tw`,`status` FROM `movie` ORDER BY `create_at` DESC";
+        $result = $this->conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+            switch ($row["status"]) {
+                case "1":
+                    $row["level"] = "播映中";
+                    break;
+
+                case "-1":
+                    $row["level"] = "已下架";
+                    break;
+            }
+            $arr["data"][] = $row;
+        }
         $arr["status"] = true;
         return $arr;
     }

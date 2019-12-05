@@ -16,8 +16,10 @@ class Token
     function setToken($account)
     {
         $hash_account = password_hash($account, PASSWORD_DEFAULT);
-        $stmt = $this->conn->prepare("UPDATE `member` SET `token` = ? WHERE `account` = ?");
-        $stmt->bind_param("ss", $hash_account, $account);
+        date_default_timezone_set('Asia/Taipei');
+        $date = date("Y-m-d G:i:s");
+        $stmt = $this->conn->prepare("UPDATE `member` SET `token` = ?, `last_login` = ? WHERE `account` = ?");
+        $stmt->bind_param("sss", $hash_account, $date, $account);
         if ($stmt->execute()) {
             $arr["status"] = true;
             $arr["token"] = $hash_account;
@@ -95,5 +97,31 @@ class Token
             }
         }
         return "ok";
+    }
+
+    /**
+     * 仿中介層:驗證管理者
+     */
+    function manager_verify()
+    {
+        $result = $this->checkToken();
+        if ($result["permission"] === "2") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 仿中介層:驗證會員(包括管理者)
+     */
+    function member_verify()
+    {
+        $result = $this->checkToken();
+        if ($result["permission"] >= "1") {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
