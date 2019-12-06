@@ -265,9 +265,42 @@
 // }
 
 // 驗證class內的function是否存在
-require_once("mysql_connect.php");
-require_once("Book.php");
+// require_once("mysql_connect.php");
+// require_once("Book.php");
+//
+// $book = new Book($conn);
+// var_dump(method_exists($book, 'checkout'));
 
-$book = new Book($conn);
-var_dump(method_exists($book, 'checkout'));
+// insert多筆
+require 'mysql_connect.php';
+$data = json_decode($_POST["data"],true);
+$sql = "INSERT INTO `book_seat` (`book_id`,`row`,`number`) VALUES ";
+// echo count($data);
+// var_dump($data);
+for ($i=1;$i<=count($data);$i++) {
+    if ($i==1){
+        $sql = $sql."('34',?,?)";
+    } else {
+        $sql = $sql.",('34',?,?)";
+    }
+}
+echo $sql;
+$bind_form = "";
+for ($i=1;$i<=count($data);$i++) {
+    $bind_form = $bind_form."ss";
+}
+echo "bind_form:$bind_form";
+$bind_array = array();
+foreach ($data as $da) {
+    $bind_array[] = $da["row"];
+    $bind_array[] = $da["number"];
+}
+print_r($bind_array);
+$stmt = $conn->prepare($sql);
+$stmt->bind_param($bind_form, ...$bind_array);
+if (!$stmt->execute()) {
+    echo Exception(htmlspecialchars($stmt->error));
+} else {
+    echo "hahahahahahaha";
+}
 ?>

@@ -1,6 +1,5 @@
 $(document).ready(function () {
     let waitBook = $("#waitBook").html();
-    $("#checkout").hide();
     $(".btn").click(function (e) {
         if ($(this).hasClass("btn-default")) {
             if (waitBook > 0) {
@@ -17,9 +16,11 @@ $(document).ready(function () {
         }
 
         if (waitBook === 0) {
-            $("#checkout").fadeIn();
+            $("#checkout").removeClass("seat-sold");
         } else {
-            $("#checkout").fadeOut();
+            if (!$("#checkout").hasClass("seat-sold")) {
+                $("#checkout").addClass("seat-sold");
+            }
         }
     });
 

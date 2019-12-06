@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-11-25 10:29:08
+/* Smarty version 3.1.33, created on 2019-12-06 03:47:16
   from 'C:\xampp\htdocs\movie\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5ddb9ee4cbac69_39912765',
+  'unifunc' => 'content_5de9c134174711_50292602',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2fa2d0f9c92f645fecc9461c0e14ced9f2446eac' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\login.tpl',
-      1 => 1574673985,
+      1 => 1575600405,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ddb9ee4cbac69_39912765 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de9c134174711_50292602 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -55,6 +55,7 @@ function content_5ddb9ee4cbac69_39912765 (Smarty_Internal_Template $_smarty_tpl)
 <div class="test">
     <div class="test2">
         <div class="col-md-6 login-form-2">
+            <a href="index.php"><img src="img/ayaya.jpg"></a>
             <h3>登入</h3>
             <br>
             <div class="form-group">

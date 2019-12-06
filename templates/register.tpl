@@ -22,6 +22,7 @@
 <div class="test">
     <div class="test2">
         <div class="col-md-6 login-form-2">
+            <a href="index.php"><img src="img/ayaya.jpg"></a>
             <h3>註冊</h3>
             <br>
             <div class="form-group">

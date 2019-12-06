@@ -27,6 +27,11 @@ $(document).ready(function () {
             $("#pwEr").text("");
             pwFlag = 1;
         }
+
+        if ($("#password").val() == $("#password2").val()) {
+            $("#pw2Er").text("");
+            pw2Flag = 1;
+        }
     });
 
     $("#password2").focusout(function (e) {

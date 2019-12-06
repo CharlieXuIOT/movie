@@ -166,8 +166,8 @@ class Book extends Token
             ## remove all queries from queue if error (undo)
             $this->conn->rollback();
             $arr["msg"] = $e->getMessage();
-            return json_encode($arr);
             $this->conn->close();
+            return json_encode($arr);
         }
     }
 }

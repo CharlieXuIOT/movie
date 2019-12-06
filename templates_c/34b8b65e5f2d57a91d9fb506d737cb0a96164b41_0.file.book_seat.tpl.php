@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-03 14:17:41
+/* Smarty version 3.1.33, created on 2019-12-06 14:20:53
   from 'C:\xampp\htdocs\movie\templates\book_seat.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de5fe05bb9f63_53511663',
+  'unifunc' => 'content_5de9f3456bc677_53380850',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '34b8b65e5f2d57a91d9fb506d737cb0a96164b41' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\book_seat.tpl',
-      1 => 1575353861,
+      1 => 1575613249,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de5fe05bb9f63_53511663 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de9f3456bc677_53380850 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -142,7 +142,7 @@ echo $_prefixVariable7;?>
 }
 ?>
         <div class="col-md-offset-5">
-            <button type="button" class="btn btn-primary" id="checkout">結帳</button>
+            <button type="button" class="btn btn-primary seat-sold" id="checkout">結帳</button>
         </div>
     </div>
 </div>

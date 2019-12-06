@@ -1,24 +1,24 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-05 10:34:26
+/* Smarty version 3.1.33, created on 2019-12-06 06:51:31
   from 'C:\xampp\htdocs\movie\templates\register.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de8cf227b1f57_03583676',
+  'unifunc' => 'content_5de9ec630f3ea4_04839600',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50f56b277c6e04ad33fea724c2c2654174c3b045' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\register.tpl',
-      1 => 1574674188,
+      1 => 1575600405,
       2 => 'file',
     ),
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_5de8cf227b1f57_03583676 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5de9ec630f3ea4_04839600 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +43,7 @@ function content_5de8cf227b1f57_03583676 (Smarty_Internal_Template $_smarty_tpl)
 <div class="test">
     <div class="test2">
         <div class="col-md-6 login-form-2">
+            <a href="index.php"><img src="img/ayaya.jpg"></a>
             <h3>註冊</h3>
             <br>
             <div class="form-group">

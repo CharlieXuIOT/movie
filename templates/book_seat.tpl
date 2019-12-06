@@ -60,7 +60,7 @@
             </div>
         {/for}
         <div class="col-md-offset-5">
-            <button type="button" class="btn btn-primary" id="checkout">結帳</button>
+            <button type="button" class="btn btn-primary seat-sold" id="checkout">結帳</button>
         </div>
     </div>
 </div>

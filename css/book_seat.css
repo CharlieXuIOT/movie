@@ -2,9 +2,9 @@
     cursor: not-allowed !important;
 }
 
-.seat-locked {
+/* .seat-locked {
     cursor: not-allowed !important;
-}
+} */
 
 span {
     font-size: 24px;
