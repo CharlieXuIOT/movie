@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-03 11:24:15
+/* Smarty version 3.1.33, created on 2019-12-09 15:49:10
   from 'C:\xampp\htdocs\movie\templates\book_ticket.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de5d55fc84565_12815307',
+  'unifunc' => 'content_5dedfc76e217e3_54167974',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'eacb831c329a12eb041f079628a30d823f407299' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\book_ticket.tpl',
-      1 => 1575343438,
+      1 => 1575877750,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de5d55fc84565_12815307 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dedfc76e217e3_54167974 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,6 +50,13 @@ function content_5de5d55fc84565_12815307 (Smarty_Internal_Template $_smarty_tpl)
     <?php if (isset($_smarty_tpl->tpl_vars['tokenCheckFail']->value)) {?>
         <?php echo '<script'; ?>
  src="js/tokenCheckFail.js"><?php echo '</script'; ?>
+>
+    <?php } elseif (isset($_smarty_tpl->tpl_vars['permissionDeny']->value)) {?>
+        <?php echo '<script'; ?>
+>
+            alert("尚未登入或以被停權，請確認會員狀態");
+            window.location = "index.php";
+        <?php echo '</script'; ?>
 >
     <?php } elseif (isset($_smarty_tpl->tpl_vars['flag_eventID']->value)) {?>
         <?php echo '<script'; ?>

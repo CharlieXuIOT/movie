@@ -27,7 +27,7 @@ class Book extends Token
             'msg' => '',
         ];
 
-        // 身分驗證
+        ## 身分驗證
         $result = $this->checkToken();
         if ($result["permission"] < 1) {
             $arr["msg"] = "guest not allowed";
@@ -76,18 +76,48 @@ class Book extends Token
             ## 使用者的餘額 $result["cash"]
             ## 計算訂票總金額 $amount
             $amount = 0;
-            $sql5 = "SELECT `price` FROM `ticket` WHERE `type` = ?";
-            $stmt5 = $this->conn->prepare($sql5);
-            $stmt5->bind_param("s", $ticket_type);
-            foreach ($ticket as $_ticket) {
-                $ticket_type = $_ticket["ticketType"];
-                if (!$stmt5->execute()) {
-                    throw new Exception(htmlspecialchars($stmt5->error));
-                };
-                $stmt5->bind_result($ticket_price);
-                $stmt5->fetch();
-                $amount += $ticket_price * $_ticket["quantity"];
+            ## DB查詢結果:票價和id的陣列
+            $ticketprice = array();
+            $ticketid = array();
+
+            $sql5 = "SELECT `id`,`price` FROM `ticket` WHERE `type` IN (";
+            $bind_form = "";
+            $bind_array = array();
+            for ($i=0;$i<count($ticket);$i++) {
+                if ($i==0){
+                    $sql5 = $sql5."?";
+                } else {
+                    $sql5 = $sql5.",?";
+                }
+                $bind_form = $bind_form."s";
+                $bind_array[] = $ticket[$i]["ticketType"];
             }
+            $sql5 = $sql5.")";
+
+            $stmt5 = $this->conn->prepare($sql5);
+            $stmt5->bind_param($bind_form, ...$bind_array);
+
+            if (!$stmt5->execute()) {
+                echo Exception(htmlspecialchars($stmt5->error));
+            } else {
+                $stmt5->store_result();
+                if ($stmt5->num_rows != count($ticket)) {
+                    echo Exception(htmlspecialchars("MyErrorCode:ticketType's name not correspond"));
+                } else {
+                    $stmt5->bind_result($id, $ticket_price);
+                    while ($stmt5->fetch()) {
+                        // ticketid array
+                        $ticketid[] = $id;
+                        // ticketprice array
+                        $ticketprice[] = $ticket_price;
+                    }
+                    for ($i=0;$i<count($ticketprice);$i++) {
+                        $amount += $ticketprice[$i]*$ticket[$i]["quantity"];
+                    }
+                }
+
+            }
+
             $stmt5->close();
             if ($amount > $result["cash"]) {
                 throw new Exception(htmlspecialchars("MyErrorCode:no enough money"));
@@ -95,20 +125,30 @@ class Book extends Token
             $result["cash"] = $result["cash"] - $amount;
 
             ## 寫入DB
-            $sql2 = "INSERT INTO `book_ticket` (`book_id`,`ticket_id`,`sheet`,`ticket_price`) 
-                        VALUES (?,(SELECT `ticket`.`id` FROM `ticket` WHERE `ticket`.`type` = ? limit 1)
-                                ,?,(SELECT `ticket`.`price` FROM `ticket` WHERE `ticket`.`type` = ? limit 1))";
-            $stmt2 = $this->conn->prepare($sql2);
-            $stmt2->bind_param("sssi", $book_id, $ticket_type1, $sheet, $ticket_type2);
-            foreach ($ticket as $_ticket) {
-                $ticket_type1 = $_ticket["ticketType"];
-                $ticket_type2 = $_ticket["ticketType"];
-                $sheet = $_ticket["quantity"];
-                $ticket_price = $_ticket["price"];
-                if (!$stmt2->execute()) {
-                    throw new Exception(htmlspecialchars($stmt2->error));
-                };
+            $sql2 = "INSERT INTO `book_ticket` (`book_id`,`ticket_id`,`sheet`,`ticket_price`) VALUES ";
+            $bind_form = "";
+            $bind_array = array();
+            for ($i=0; $i<count($ticketid); $i++) {
+                if ($i==0){
+                    $sql2 = $sql2."(?,?,?,?)";
+                } else {
+                    $sql2 = $sql2.",(?,?,?,?)";
+                }
+                $bind_form = $bind_form."ssss";
+
+                $bind_array[] = $book_id;
+                $bind_array[] = $ticketid[$i];
+                $bind_array[] = $ticket[$i]["quantity"];
+                $bind_array[] = $ticketprice[$i];
             }
+
+            $stmt2 = $this->conn->prepare($sql2);
+            $stmt2->bind_param($bind_form, ...$bind_array);
+
+            if (!$stmt2->execute()) {
+                throw new Exception(htmlspecialchars($stmt2->error));
+            }
+
             $stmt2->close();
 
             ## 扣除使用者餘額
@@ -128,34 +168,59 @@ class Book extends Token
             $sql3 = "SELECT `book_seat`.`row`,`book_seat`.`number` FROM `book_seat`,`book_info` 
                         WHERE `book_info`.`id`=`book_seat`.`book_id` 
                         AND `book_info`.`event_id` = ?
-                        AND `book_seat`.`row` = ?
-                        AND `book_seat`.`number` = ?";
-            $stmt3 = $this->conn->prepare($sql3);
-            $stmt3->bind_param("sss", $event, $row, $number);
-            foreach ($seat as $_seat) {
-                $row = $_seat["row"];
-                $number = $_seat["number"];
-                if (!$stmt3->execute()) {
-                    throw new Exception(htmlspecialchars($stmt3->error));
-                };
-                $stmt3->store_result();
-                if ($stmt3->num_rows > 0) {
-                    throw new Exception(htmlspecialchars("MyErrorCode:seat already been booked"));
-                };
-                $stmt3->free_result();
+                        AND (";
+            $bind_form = "s";
+            $bind_array = array();
+            $bind_array[] = $book_id;
+
+            for ($i=0; $i<count($seat); $i++) {
+                if ($i == 0) {
+                    $sql3 = $sql3."(`book_seat`.`row` = ? AND `book_seat`.`number` = ?)";
+                } else {
+                    $sql3 = $sql3." OR (`book_seat`.`row` = ? AND `book_seat`.`number` = ?)";
+                }
+                $bind_form = $bind_form."ss";
+                $bind_array[] = $seat[$i]["row"];
+                $bind_array[] = $seat[$i]["number"];
             }
+            $sql3 = $sql3.")";
+
+            $stmt3 = $this->conn->prepare($sql3);
+            $stmt3->bind_param($bind_form, ...$bind_array);
+
+            if (!$stmt3->execute()) {
+                throw new Exception(htmlspecialchars($stmt3->error));
+            };
+            $stmt3->store_result();
+            if ($stmt3->num_rows > 0) {
+                throw new Exception(htmlspecialchars("MyErrorCode:seat already been booked"));
+            };
+
+            $stmt3->free_result();
             $stmt3->close();
             ## 寫入book_seat
-            $sql4 = "INSERT INTO `book_seat` (`book_id`,`row`,`number`) VALUES (?,?,?)";
-            $stmt4 = $this->conn->prepare($sql4);
-            $stmt4->bind_param("sss", $book_id, $row, $number);
-            foreach ($seat as $_seat) {
-                $row = $_seat["row"];
-                $number = $_seat["number"];
-                if (!$stmt4->execute()) {
-                    throw new Exception(htmlspecialchars($stmt3->error));
-                };
+            $sql4 = "INSERT INTO `book_seat` (`book_id`,`row`,`number`) VALUES ";
+            $bind_form = "";
+            $bind_array = array();
+
+            for ($i=0; $i<count($seat); $i++) {
+                if ($i == 0) {
+                    $sql4 = $sql4."(?,?,?)";
+                } else {
+                    $sql4 = $sql4.",(?,?,?)";
+                }
+                $bind_form = $bind_form."sss";
+                $bind_array[] = $book_id;
+                $bind_array[] = $seat[$i]["row"];
+                $bind_array[] = $seat[$i]["number"];
             }
+
+            $stmt4 = $this->conn->prepare($sql4);
+            $stmt4->bind_param($bind_form, ...$bind_array);
+
+            if (!$stmt4->execute()) {
+                throw new Exception(htmlspecialchars($stmt4->error));
+            };
             $stmt4->close();
 
             ## turn off transactions + commit queued queries

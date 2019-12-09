@@ -19,6 +19,11 @@
 
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
+    {elseif isset($permissionDeny)}
+        <script>
+            alert("請先登入");
+            window.location = "login.php";
+        </script>
     {/if}
     <script src="js/navbar.js"></script>
     <script src="js/deposit.js"></script>

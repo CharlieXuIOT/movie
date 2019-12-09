@@ -105,7 +105,7 @@ class Token
     function manager_verify()
     {
         $result = $this->checkToken();
-        if ($result["permission"] === "2") {
+        if ($result["permission"] === 2) {
             return true;
         } else {
             return false;
@@ -118,7 +118,7 @@ class Token
     function member_verify()
     {
         $result = $this->checkToken();
-        if ($result["permission"] >= "1") {
+        if ($result["permission"] >= 1) {
             return true;
         } else {
             return false;

@@ -165,10 +165,9 @@ class Member extends Token
         ];
 
         ## 檢查權限
-        $result = $this->checkToken();
-        if ($result["permission"] < 2) {
+        if (!$this->manager_verify()) {
             $arr["msg"] = "Permission denied";
-            return $arr;
+            return json_encode($arr);
         }
 
         ## 更改權限

@@ -14,10 +14,19 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+    <!-- Bootstrap Toggle -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
 
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
+    {elseif isset($permissionDeny)}
+        <script>
+            alert("權限不足");
+            window.location = "index.php";
+        </script>
     {/if}
     <script src="js/navbar.js"></script>
     <script src="js/manager_member.js"></script>
@@ -32,7 +41,17 @@
 {{include file="navbar.tpl"}}
 <div class="container">
     <h2>會員管理</h2>
-    <button type="button" class="btn btn-warning" id="quicksearch">快搜停權帳號</button>
+{*    <button type="button" class="btn btn-warning" id="quicksearch">快搜停權帳號</button>*}
+    <label>
+        <h4>
+            快搜停權帳號
+            {if isset($smarty.get.quick)}
+                <input type="checkbox" checked id="toggle" data-toggle="toggle">
+            {else}
+                <input type="checkbox" id="toggle" data-toggle="toggle">
+            {/if}
+        </h4>
+    </label>
     <table id="myTable" class="table order-list">
         <thead>
         <tr>
@@ -68,6 +87,17 @@
         {/foreach}
         </tbody>
     </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="active page"><a href="#">1</a></li>
+            <li class="page"><a href="#">2</a></li>
+            <li class="page"><a href="#">3</a></li>
+            <li class="page"><a href="#">4</a></li>
+            <li class="page"><a href="#">5</a></li>
+        </ul>
+    </div>
+
 </div>
 </body>
 </html>

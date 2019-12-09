@@ -18,6 +18,11 @@
 
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
+    {elseif isset($permissionDeny)}
+        <script>
+            alert("權限不足");
+            window.location = "index.php";
+        </script>
     {/if}
     <script src="js/navbar.js"></script>
     <script src="js/manager_movie.js"></script>

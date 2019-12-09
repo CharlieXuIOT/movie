@@ -19,6 +19,11 @@
 
     {if isset($tokenCheckFail)}
         <script src="js/tokenCheckFail.js"></script>
+    {elseif isset($permissionDeny)}
+        <script>
+            alert("權限不足");
+            window.location = "index.php";
+        </script>
     {elseif isset($flag_eventID)}
         <script>
             alert("查無此場次資訊!");

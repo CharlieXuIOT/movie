@@ -272,35 +272,132 @@
 // var_dump(method_exists($book, 'checkout'));
 
 // insert多筆
-require 'mysql_connect.php';
-$data = json_decode($_POST["data"],true);
-$sql = "INSERT INTO `book_seat` (`book_id`,`row`,`number`) VALUES ";
-// echo count($data);
-// var_dump($data);
-for ($i=1;$i<=count($data);$i++) {
-    if ($i==1){
-        $sql = $sql."('34',?,?)";
-    } else {
-        $sql = $sql.",('34',?,?)";
-    }
-}
-echo $sql;
-$bind_form = "";
-for ($i=1;$i<=count($data);$i++) {
-    $bind_form = $bind_form."ss";
-}
-echo "bind_form:$bind_form";
-$bind_array = array();
-foreach ($data as $da) {
-    $bind_array[] = $da["row"];
-    $bind_array[] = $da["number"];
-}
-print_r($bind_array);
-$stmt = $conn->prepare($sql);
-$stmt->bind_param($bind_form, ...$bind_array);
-if (!$stmt->execute()) {
-    echo Exception(htmlspecialchars($stmt->error));
-} else {
-    echo "hahahahahahaha";
-}
+// require 'mysql_connect.php';
+// $data = json_decode($_POST["data"],true);
+// $sql = "INSERT INTO `book_seat` (`book_id`,`row`,`number`) VALUES ";
+// // echo count($data);
+// // var_dump($data);
+// for ($i=1;$i<=count($data);$i++) {
+//     if ($i==1){
+//         $sql = $sql."('34',?,?)";
+//     } else {
+//         $sql = $sql.",('34',?,?)";
+//     }
+// }
+// echo $sql;
+// $bind_form = "";
+// for ($i=1;$i<=count($data);$i++) {
+//     $bind_form = $bind_form."ss";
+// }
+// echo "bind_form:$bind_form";
+// $bind_array = array();
+// foreach ($data as $da) {
+//     $bind_array[] = $da["row"];
+//     $bind_array[] = $da["number"];
+// }
+// print_r($bind_array);
+// $stmt = $conn->prepare($sql);
+// $stmt->bind_param($bind_form, ...$bind_array);
+// if (!$stmt->execute()) {
+//     echo Exception(htmlspecialchars($stmt->error));
+// } else {
+//     echo "hahahahahahaha";
+// }
+
+// 另一組insert多筆
+// require 'mysql_connect.php';
+// // $ticketid = ["230", "300", "260"];
+// // $ticketprice = ["1", "2", "3"];
+// $data = json_decode($_POST["data"],true);
+//
+// $book_id = "39";
+//
+// $sql2 = "INSERT INTO `book_ticket` (`book_id`,`ticket_id`,`sheet`,`ticket_price`) VALUES ";
+// $bind_form = "";
+// $bind_array = array();
+// for ($i = 1; $i <= count($data); $i++) {
+//     if ($i == 1) {
+//         $sql2 = $sql2 . "(?,?,?,?)";
+//     } else {
+//         $sql2 = $sql2 . ",(?,?,?,?)";
+//     }
+//     $bind_form = $bind_form . "ssss";
+// }
+//
+// foreach ($data as $da) {
+//     switch ($da["ticketType"]) {
+//         case "聯名卡優惠價":
+//             $id = "1";
+//         case "全票":
+//             $id = "2";
+//         case "學生優待票":
+//             $id = "3";
+//     }
+//     $bind_array[] = $book_id;
+//     $bind_array[] = $id;
+//     $bind_array[] = $da["quantity"];
+//     $bind_array[] = $da["price"];
+// }
+//
+// $stmt2 = $conn->prepare($sql2);
+// $stmt2->bind_param($bind_form, ...$bind_array);
+//
+// if (!$stmt2->execute()) {
+//     echo Exception(htmlspecialchars($stmt2->error));
+// } else {
+//     echo "hahahahahahaha";
+// }
+
+// select多筆
+// require 'mysql_connect.php';
+// $ticketprice = array();
+// $ticketid = array();
+// $totalprice = 0;
+// // var_dump($_POST);
+// $sql = "SELECT `id`,`price` FROM `ticket` WHERE `type` IN (";
+// $data = json_decode($_POST["data"],true);
+// for ($i=1;$i<=count($data);$i++) {
+//     if ($i==1){
+//         $sql = $sql."?";
+//     } else {
+//         $sql = $sql.",?";
+//     }
+// }
+// $sql = $sql.")";
+// // echo $sql."<br>";
+// $bind_form = "";
+// for ($i=1;$i<=count($data);$i++) {
+//     $bind_form = $bind_form."s";
+// }
+// // echo $bind_form."<br>";
+// $bind_array = array();
+// foreach ($data as $da) {
+//     $bind_array[] = $da["ticketType"];
+// }
+// // print_r($bind_array);
+// $stmt = $conn->prepare($sql);
+// $stmt->bind_param($bind_form, ...$bind_array);
+// if (!$stmt->execute()) {
+//     echo Exception(htmlspecialchars($stmt->error));
+// } else {
+//     // $result = $stmt->get_result();
+//     $stmt->store_result();
+//     if ($stmt->num_rows != count($data)) {
+//         echo Exception(htmlspecialchars("MyErrorCode:ticketType's name not correspond"));
+//     } else {
+//         $stmt->bind_result($id, $ticket_price);
+//         while ($stmt->fetch()) {
+//             // ticketid array
+//             $ticketid[] = $id;
+//             // ticketprice array
+//             $ticketprice[] = $ticket_price;
+//         }
+//         print_r($ticketprice);
+//         print_r($ticketid);
+//         for ($i=0;$i<count($ticketprice);$i++) {
+//             $totalprice += $ticketprice[$i]*$data[$i]["quantity"];
+//         }
+//         echo $totalprice;
+//     }
+// }
 ?>

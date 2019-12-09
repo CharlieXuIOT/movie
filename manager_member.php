@@ -22,7 +22,7 @@ if ($result["status"] === false) {
     $smarty->assign("tokenCheckFail", 1);
 } elseif ($result["permission"] < 2) {
     ## 遊客和一般會員
-    header('Location: login.php');
+    $smarty->assign("permissionDeny", 1);
 } else {
     $smarty->assign("navbar", $result);
 

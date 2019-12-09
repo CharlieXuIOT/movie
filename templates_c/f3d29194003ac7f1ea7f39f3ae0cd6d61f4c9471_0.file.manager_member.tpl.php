@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-05 07:21:01
+/* Smarty version 3.1.33, created on 2019-12-09 11:16:49
   from 'C:\xampp\htdocs\movie\templates\manager_member.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de8a1cdd703c9_95659093',
+  'unifunc' => 'content_5dee1f1114e888_27503788',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f3d29194003ac7f1ea7f39f3ae0cd6d61f4c9471' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\manager_member.tpl',
-      1 => 1575526860,
+      1 => 1575886533,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5de8a1cdd703c9_95659093 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5dee1f1114e888_27503788 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,11 +44,24 @@ function content_5de8a1cdd703c9_95659093 (Smarty_Internal_Template $_smarty_tpl)
  src="//code.jquery.com/jquery-1.11.1.min.js"><?php echo '</script'; ?>
 >
 
+    <!-- Bootstrap Toggle -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <?php echo '<script'; ?>
+ src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"><?php echo '</script'; ?>
+>
+
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
 
     <?php if (isset($_smarty_tpl->tpl_vars['tokenCheckFail']->value)) {?>
         <?php echo '<script'; ?>
  src="js/tokenCheckFail.js"><?php echo '</script'; ?>
+>
+    <?php } elseif (isset($_smarty_tpl->tpl_vars['permissionDeny']->value)) {?>
+        <?php echo '<script'; ?>
+>
+            alert("權限不足");
+            window.location = "index.php";
+        <?php echo '</script'; ?>
 >
     <?php }?>
     <?php echo '<script'; ?>
@@ -72,7 +85,16 @@ echo $_prefixVariable1;?>
 
 <div class="container">
     <h2>會員管理</h2>
-    <button type="button" class="btn btn-warning" id="quicksearch">快搜停權帳號</button>
+    <label>
+        <h4>
+            快搜停權帳號
+            <?php if (isset($_GET['quick'])) {?>
+                <input type="checkbox" checked id="toggle" data-toggle="toggle">
+            <?php } else { ?>
+                <input type="checkbox" id="toggle" data-toggle="toggle">
+            <?php }?>
+        </h4>
+    </label>
     <table id="myTable" class="table order-list">
         <thead>
         <tr>
@@ -135,6 +157,17 @@ echo $_prefixVariable6;?>
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
         </tbody>
     </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            <li class="active page"><a href="#">1</a></li>
+            <li class="page"><a href="#">2</a></li>
+            <li class="page"><a href="#">3</a></li>
+            <li class="page"><a href="#">4</a></li>
+            <li class="page"><a href="#">5</a></li>
+        </ul>
+    </div>
+
 </div>
 </body>
 </html><?php }

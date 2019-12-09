@@ -5,7 +5,7 @@ class Post extends Token
 {
     protected $conn;
     ## 每頁有多少筆資料
-    private $row_per_page = 6;
+    private $row_per_page = 3;
 
     function __construct($conn)
     {
@@ -126,6 +126,12 @@ class Post extends Token
             return $arr;
         }
 
+        ## 身分驗證
+        if (!$this->member_verify()) {
+            $arr["msg"] = "guest not allowed";
+            return json_encode($arr);
+        }
+
         ## 以event id撈出訂票右側需要的資料
         ## 條件:管理員未下架、離播映時間不小於一小時
         $sql = "SELECT `movie_time`.* ,`movie`.`name_tw`,`movie`.`name_en`
@@ -187,6 +193,12 @@ class Post extends Token
             return $arr;
         }
 
+        ## 身分驗證
+        if (!$this->member_verify()) {
+            $arr["msg"] = "guest not allowed";
+            return json_encode($arr);
+        }
+
         ## 以event id撈出訂票右側需要的資料
         ## 條件:管理員未下架、離播映時間不小於一小時
         $sql = "SELECT `movie_time`.* ,`movie`.`name_tw`,`movie`.`name_en`
@@ -244,10 +256,9 @@ class Post extends Token
         ];
 
         ## 檢查權限
-        $result = $this->checkToken();
-        if ($result["permission"] < 2) {
+        if (!$this->manager_verify()) {
             $arr["msg"] = "Permission denied";
-            return $arr;
+            return json_encode($arr);
         }
 
         ## 撈資料
@@ -284,11 +295,9 @@ class Post extends Token
         ];
 
         ## 檢查權限
-        $result = $this->checkToken();
-
-        if ($result["permission"] !== 2) {
+        if (!$this->manager_verify()) {
             $arr["msg"] = "Permission denied";
-            return $arr;
+            return json_encode($arr);
         }
 
         ## 撈資料

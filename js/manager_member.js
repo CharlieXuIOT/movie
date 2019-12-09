@@ -1,20 +1,25 @@
 let id = new String();
 let permission = new String();
 $(document).ready(function () {
-
+    $(".page").click(function () {
+        let page = $(this).text();
+        if (!$(this).hasClass("active")) {
+            if (!$(".toggle").hasClass("off")) {
+                // console.log("quick search with page click");
+                window.location = "manager_member.php?quick=1&page=" + page;
+            } else {
+                // console.log("page click");
+                window.location = "manager_member.php?page=" + page;
+            }
+        }
+    });
 });
 
-$(document).on('click', '#quicksearch', function () {
-    if ($(this).hasClass("btn-warning")) {
-        $(this).removeClass("btn-warning").addClass("btn-default");
-        // 隱藏非停權帳號
-        $(".suspend").each(function(){
-            $(this).parent().parent().hide();
-        })
+$(document).on('click', '.toggle', function () {
+    if (!$(this).hasClass("off")) {
+        window.location = "manager_member.php?quick=1";
     } else {
-        $(this).removeClass("btn-default").addClass("btn-warning");
-        // 顯示所有帳號
-        $("tr:hidden").show();
+        window.location = "manager_member.php";
     }
 });
 

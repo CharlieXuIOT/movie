@@ -25,7 +25,7 @@ if ($result["status"] === false) {
     $smarty->assign("tokenCheckFail", 1);
 } elseif ($result["permission"] === 0 || $result["permission"] === -1) {
     ## 遊客或者被停權會員
-    header('Location: index.php');
+    $smarty->assign("permissionDeny", 1);
 } else {
     $smarty->assign("navbar", $result);
     ## 先檢查event參數
