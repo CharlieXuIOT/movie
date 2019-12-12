@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-09 15:52:03
+/* Smarty version 3.1.33, created on 2019-12-11 11:56:10
   from 'C:\xampp\htdocs\movie\templates\book_checkout.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5dedfd23ccc644_38190046',
+  'unifunc' => 'content_5df068da935856_34124662',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a9a7dda71b8b7e2a75871a74b7582b556f33a0f8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\book_checkout.tpl',
-      1 => 1575877820,
+      1 => 1576034291,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:navbar.tpl' => 1,
   ),
 ),false)) {
-function content_5dedfd23ccc644_38190046 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5df068da935856_34124662 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,9 +39,6 @@ function content_5dedfd23ccc644_38190046 (Smarty_Internal_Template $_smarty_tpl)
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <?php echo '<script'; ?>
  src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="//code.jquery.com/jquery-1.11.1.min.js"><?php echo '</script'; ?>
 >
 
     <link rel="stylesheet" type="text/css" href="css/navbar.css">

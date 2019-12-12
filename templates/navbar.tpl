@@ -16,6 +16,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="manager_member.php">會員管理</a></li>
                             <li><a href="manager_movie.php">電影上下架</a></li>
+                            <li><a href="manager_addevent.php">電影新增場次</a></li>
                         </ul>
                     </li>
                 {/if}
@@ -28,7 +29,15 @@
                 {/if}
 
                 {if {{$navbar.permission}} >= 1 || {{$navbar.permission}} == -1}
-                    <li><a id="navAccount" style="cursor: default">Welcome, {{$navbar.account}} </a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="navAccount" style="cursor: pointer">
+                            Welcome, {{$navbar.account}}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="record.php">訂單紀錄</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <a id="navCash" href="deposit.php"><span
                                     class="glyphicon glyphicon-usd"></span>{{$navbar.cash}}</a>

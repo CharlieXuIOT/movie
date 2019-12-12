@@ -1,24 +1,24 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-06 06:51:31
+/* Smarty version 3.1.33, created on 2019-12-12 09:04:11
   from 'C:\xampp\htdocs\movie\templates\register.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de9ec630f3ea4_04839600',
+  'unifunc' => 'content_5df1f47ba47320_92760104',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50f56b277c6e04ad33fea724c2c2654174c3b045' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\register.tpl',
-      1 => 1575600405,
+      1 => 1576137848,
       2 => 'file',
     ),
   ),
   'cache_lifetime' => 120,
 ),true)) {
-function content_5de9ec630f3ea4_04839600 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5df1f47ba47320_92760104 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,8 +36,6 @@ function content_5de9ec630f3ea4_04839600 (Smarty_Internal_Template $_smarty_tpl)
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-
-    <script src="js/register.js"></script>
 </head>
 <body>
 <div class="test">
@@ -65,6 +63,8 @@ function content_5de9ec630f3ea4_04839600 (Smarty_Internal_Template $_smarty_tpl)
         </div>
     </div>
 </div>
+
+<script src="js/register.js"></script>
 </body>
 </html><?php }
 }

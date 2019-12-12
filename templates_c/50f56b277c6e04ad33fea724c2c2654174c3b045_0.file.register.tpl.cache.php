@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-06 03:46:45
+/* Smarty version 3.1.33, created on 2019-12-12 09:04:11
   from 'C:\xampp\htdocs\movie\templates\register.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de9c1154e2a31_35874773',
+  'unifunc' => 'content_5df1f47ba3bd40_14059214',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '50f56b277c6e04ad33fea724c2c2654174c3b045' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\register.tpl',
-      1 => 1575600405,
+      1 => 1576137848,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5de9c1154e2a31_35874773 (Smarty_Internal_Template $_smarty_tpl) {
-$_smarty_tpl->compiled->nocache_hash = '8849112455de9c115484594_97559246';
+function content_5df1f47ba3bd40_14059214 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->compiled->nocache_hash = '6571838265df1f47ba09167_68137877';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,10 +46,6 @@ $_smarty_tpl->compiled->nocache_hash = '8849112455de9c115484594_97559246';
 >
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-
-    <?php echo '<script'; ?>
- src="js/register.js"><?php echo '</script'; ?>
->
 </head>
 <body>
 <div class="test">
@@ -77,6 +73,10 @@ $_smarty_tpl->compiled->nocache_hash = '8849112455de9c115484594_97559246';
         </div>
     </div>
 </div>
+
+<?php echo '<script'; ?>
+ src="js/register.js"><?php echo '</script'; ?>
+>
 </body>
 </html><?php }
 }

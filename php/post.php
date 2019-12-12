@@ -12,8 +12,8 @@ if (isset($_POST["action"])) {
             echo $post->remove($_POST["id"]);
             break;
 
-        case "new":
-            echo $post->add($_POST["title"]);
+        case "manager_movie_edit":
+            echo $post->manager_movie_edit($_POST);
             break;
     }
 } else {

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33, created on 2019-12-06 03:47:16
+/* Smarty version 3.1.33, created on 2019-12-12 09:05:23
   from 'C:\xampp\htdocs\movie\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33',
-  'unifunc' => 'content_5de9c134174711_50292602',
+  'unifunc' => 'content_5df1f4c3b16a21_72978107',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2fa2d0f9c92f645fecc9461c0e14ced9f2446eac' => 
     array (
       0 => 'C:\\xampp\\htdocs\\movie\\templates\\login.tpl',
-      1 => 1575600405,
+      1 => 1576137918,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5de9c134174711_50292602 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5df1f4c3b16a21_72978107 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -45,10 +45,6 @@ function content_5de9c134174711_50292602 (Smarty_Internal_Template $_smarty_tpl)
 >
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-
-    <?php echo '<script'; ?>
- src="js/login.js"><?php echo '</script'; ?>
->
 </head>
 
 <body>
@@ -71,6 +67,10 @@ function content_5de9c134174711_50292602 (Smarty_Internal_Template $_smarty_tpl)
         </div>
     </div>
 </div>
+
+<?php echo '<script'; ?>
+ src="js/login.js"><?php echo '</script'; ?>
+>
 </body>
 
 </html><?php }

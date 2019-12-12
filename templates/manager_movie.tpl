@@ -52,15 +52,18 @@
                 </td>
                 <td class="col-md-2">
                     {if ($movie.status === "1")}
-                        <p style="color: green">{{$movie.level}}</p>
+                        <p style="color: green" class="status">{{$movie.level}}</p>
                     {elseif ($movie.status === "0")}
-                        <p style="color: red">{{$movie.level}}</p>
+                        <p style="color: red" class="status">{{$movie.level}}</p>
                     {/if}
                 </td>
-                <td class="col-md-2 switch">
+                <td class="col-md-2 switch btn-group" role="group">
+                    <input type="button" class="btn btn-secondary edit" value="編輯" data-toggle="modal" data-target="#myModal">
                     {if ($movie.status === "1")}
+{*                        <button type="button" class="btn btn-danger btnn suspend">下架</button>*}
                         <input type="button" class="btn btn-danger btnn suspend" value="下架">
                     {elseif ($movie.status === "0")}
+{*                        <button type="button" class="btn btn-info btnn lift">上架</button>*}
                         <input type="button" class="btn btn-info btnn lift" value="上架">
                     {/if}
                 </td>
@@ -68,6 +71,42 @@
         {/foreach}
         </tbody>
     </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" data-keyboard="true" tabindex="-1">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">影片編輯</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="nametw">中文片名</label>
+                        <input type="text" class="form-control" id="nametw">
+                    </div>
+                    <div class="form-group">
+                        <label for="nameen">英文片名</label>
+                        <input type="text" class="form-control" id="nameen">
+                    </div>
+                    <div class="form-group">
+                        <label for="intro">電影簡介</label>
+                        <textarea class="form-control" id="intro" style="width: 100%;height:200px;resize:vertical;"></textarea>
+                    </div>
+{*                    <div>*}
+{*                        <p>圖片上傳</p>*}
+{*                        <input type="file" id="exampleInputFile">*}
+{*                    </div> *}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submit">提交</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -15,8 +15,6 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-
-    <script src="js/register.js"></script>
 </head>
 <body>
 <div class="test">
@@ -44,5 +42,7 @@
         </div>
     </div>
 </div>
+
+<script src="js/register.js"></script>
 </body>
 </html>

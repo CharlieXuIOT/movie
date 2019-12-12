@@ -13,10 +13,10 @@ class Member extends Token
     /**
      * 註冊
      */
-    function register($_post)
+    function register($_request)
     {
-        $account = $_post["account"];
-        $password = $_post["password"];
+        $account = $_request["account"];
+        $password = $_request["password"];
         $regex = "/^[A-Za-z0-9]{3,}$/";
         $accFlag = preg_match($regex, $account);
         $pwFlag = preg_match($regex, $password);
@@ -46,10 +46,10 @@ class Member extends Token
     /**
      * 登入
      */
-    function login($_post)
+    function login($_request)
     {
-        $_account = $_post["account"];
-        $_password = $_post["password"];
+        $_account = $_request["account"];
+        $_password = $_request["password"];
         $regex = "/^[A-Za-z0-9]{3,}$/";
         $accFlag = preg_match($regex, $_account);
         $pwFlag = preg_match($regex, $_password);
@@ -99,10 +99,10 @@ class Member extends Token
     /**
      * 儲值
      */
-    function deposit($_post)
+    function deposit($_request)
     {
         $regex = "/^[0-9]*$/";
-        $_amount = $_post["amount"];
+        $_amount = $_request["amount"];
         $arr = [
             'status' => false,
             'msg' => '',
@@ -155,10 +155,10 @@ class Member extends Token
     /**
      * 管理:會員停權
      */
-    function manager_member($post)
+    function manager_member($request)
     {
-        $id = $post["id"];
-        $permission = $post["permission"];
+        $id = $request["id"];
+        $permission = $request["permission"];
         $arr = [
             'status' => false,
             'msg' => '',

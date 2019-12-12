@@ -90,11 +90,13 @@
 
     <div class="text-center">
         <ul class="pagination">
-            <li class="active page"><a href="#">1</a></li>
-            <li class="page"><a href="#">2</a></li>
-            <li class="page"><a href="#">3</a></li>
-            <li class="page"><a href="#">4</a></li>
-            <li class="page"><a href="#">5</a></li>
+            {for $num=1 to $pages}
+                {if $num == $page}
+                    <li class="active page"><a>{{$num}}</a></li>
+                {else}
+                    <li class="page" style="cursor: pointer"><a>{{$num}}</a></li>
+                {/if}
+            {/for}
         </ul>
     </div>
 

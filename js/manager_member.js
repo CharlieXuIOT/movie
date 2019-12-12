@@ -53,8 +53,8 @@ $(document).on('click', '.btnn', function () {
                     $("#"+id).children(".level").empty().append('<p style="color: green">一般會員</p>');
                     $("#"+id).children(".switch").empty().append('<input type="button" class="btn btn-danger btnn suspend" value="停權"></input>');
                     permission = "-1";
-                    if ($('#quicksearch').hasClass("btn-default")) {
-                        $("#"+id).hide();
+                    if ($('.toggle').hasClass("btn-primary")) {
+                        $("#"+id).fadeOut();
                     }
                 }
             } else {

@@ -16,8 +16,6 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="css/login.css">
-
-    <script src="js/login.js"></script>
 </head>
 
 <body>
@@ -40,6 +38,8 @@
         </div>
     </div>
 </div>
+
+<script src="js/login.js"></script>
 </body>
 
 </html>

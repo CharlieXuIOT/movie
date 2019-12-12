@@ -400,4 +400,38 @@
 //         echo $totalprice;
 //     }
 // }
+
+// // 總筆數
+// require 'mysql_connect.php';
+// $sql = "SELECT COUNT(`id`) as count FROM `member`";
+// $result = $conn->query($sql);
+// $count = $result->fetch_object();
+// $count = $count->count;
+// var_dump($count);
+
+// Singleton
+// include 'mysql_connect.php';
+// include 'Token.php';
+
+// $token = new Token($conn);
+// var_dump($token->checkToken());
+// var_dump($token->member_verify());
+
+
+// class Test extends Token
+// {
+//     function single()
+//     {
+//         // $this->checkToken();
+//         var_dump($this->member_verify());
+//     }
+// }
+// $test = new Test($conn);
+// $test->single();
+
+// 訂單資料測試
+require 'mysql_connect.php';
+require 'Post.php';
+$post = new Post($conn);
+echo ($post->record());
 ?>

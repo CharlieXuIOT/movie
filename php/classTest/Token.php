@@ -4,6 +4,7 @@
 class Token
 {
     protected $conn;
+    private static $permission = null;
 
     function __construct($conn)
     {
@@ -63,6 +64,7 @@ class Token
             $arr["permission"] = $permission;
             $arr["cash"] = $cash;
         }
+        self::$permission = $arr["permission"];
         return $arr;
     }
 
@@ -104,8 +106,11 @@ class Token
      */
     function manager_verify()
     {
-        $result = $this->checkToken();
-        if ($result["permission"] === 2) {
+        if (self::$permission === null) {
+            $result = $this->checkToken();
+        }
+
+        if (self::$permission === 2) {
             return true;
         } else {
             return false;
@@ -117,8 +122,11 @@ class Token
      */
     function member_verify()
     {
-        $result = $this->checkToken();
-        if ($result["permission"] >= 1) {
+        if (self::$permission === null) {
+            $result = $this->checkToken();
+        }
+
+        if (self::$permission >= 1) {
             return true;
         } else {
             return false;

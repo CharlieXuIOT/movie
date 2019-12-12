@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Example Application
  *
@@ -26,24 +27,13 @@ if ($result["status"] === false) {
 } else {
     $smarty->assign("navbar", $result);
 
-    ## 分析網址參數
-    if (isset($_GET["quick"])) {
-        if (isset($_GET["page"])) {
-            $member = $post->manager_member($_GET["quick"], $_GET["page"]);
-        } else {
-            $member = $post->manager_member($_GET["quick"], "1");
-        }
+    $movie = $post->manager_addevent();
+    if ($movie["status"]) {
+        $smarty->assign("movie", $movie["data"]);
     } else {
-        if (isset($_GET["page"])) {
-            $member = $post->manager_member("0", $_GET["page"]);
-        } else {
-            $member = $post->manager_member("0", "1");
-        }
+        $smarty->assign("DBissue", 1);
     }
-    // $member = $post->manager_member();
-    $smarty->assign("members", $member["data"]);
-    $smarty->assign("pages", $member["pages"]);
-    $smarty->assign("page", $member["page"]);
 }
 
-$smarty->display('manager_member.tpl');
+
+$smarty->display('manager_addevent.tpl');

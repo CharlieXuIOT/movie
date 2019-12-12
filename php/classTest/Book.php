@@ -13,14 +13,14 @@ class Book extends Token
     /**
      * 訂票結帳
      */
-    function checkout($post)
+    public function checkout($request)
     {
-        // print_r($post);
-        $token = $post["token"];
-        $event = $post["event"];
-        $ticket = json_decode($post["ticket"],true);
-        $seat = json_decode($post["seat"],true);
-        $total = $post["total"];
+        // print_r($request);
+        $token = $request["token"];
+        $event = $request["event"];
+        $ticket = json_decode($request["ticket"],true);
+        $seat = json_decode($request["seat"],true);
+        $total = $request["total"];
         $regex = "/^[0-9]*$/";
         $arr = [
             'status' => false,
@@ -42,20 +42,22 @@ class Book extends Token
 
         try {
             ## turn on transactions
-            $this->conn->autocommit(FALSE);
+            $this->conn->autocommit(false);
 
             ## step0. 檢查電影狀態
-            $sql0 = "SELECT `movie`.`status` FROM `movie`,`movie_time` 
-                        WHERE `movie`.`id` = `movie_time`.`movie_id` 
+            $sql0 = "SELECT `movie`.`status` FROM `movie`,`movie_time`
+                        WHERE `movie`.`id` = `movie_time`.`movie_id`
                         AND `movie_time`.`id` = ?";
             $stmt0 = $this->conn->prepare($sql0);
             $stmt0->bind_param("s", $event);
             if (!$stmt0->execute()) {
                 throw new Exception(htmlspecialchars($stmt0->error));
             };
+
             $stmt0->bind_result($status);
             $stmt0->fetch();
             $stmt0->close();
+
             if ($status == "0") {
                 throw new Exception(htmlspecialchars("MyErrorCode:Please check movie status"));
             };
@@ -98,27 +100,28 @@ class Book extends Token
             $stmt5->bind_param($bind_form, ...$bind_array);
 
             if (!$stmt5->execute()) {
-                echo Exception(htmlspecialchars($stmt5->error));
-            } else {
-                $stmt5->store_result();
-                if ($stmt5->num_rows != count($ticket)) {
-                    echo Exception(htmlspecialchars("MyErrorCode:ticketType's name not correspond"));
-                } else {
-                    $stmt5->bind_result($id, $ticket_price);
-                    while ($stmt5->fetch()) {
-                        // ticketid array
-                        $ticketid[] = $id;
-                        // ticketprice array
-                        $ticketprice[] = $ticket_price;
-                    }
-                    for ($i=0;$i<count($ticketprice);$i++) {
-                        $amount += $ticketprice[$i]*$ticket[$i]["quantity"];
-                    }
-                }
+                throw Exception(htmlspecialchars($stmt5->error));
+            }
 
+            $stmt5->store_result();
+            if ($stmt5->num_rows != count($ticket)) {
+                throw Exception(htmlspecialchars("MyErrorCode:ticketType's name not correspond"));
+            }
+
+            $stmt5->bind_result($id, $ticket_price);
+            while ($stmt5->fetch()) {
+                // ticketid array
+                $ticketid[] = $id;
+                // ticketprice array
+                $ticketprice[] = $ticket_price;
+            }
+            for ($i=0;$i<count($ticketprice);$i++) {
+                $amount += $ticketprice[$i]*$ticket[$i]["quantity"];
             }
 
             $stmt5->close();
+
+            ## 判斷帳戶餘額是否足夠
             if ($amount > $result["cash"]) {
                 throw new Exception(htmlspecialchars("MyErrorCode:no enough money"));
             }
@@ -224,15 +227,44 @@ class Book extends Token
             $stmt4->close();
 
             ## turn off transactions + commit queued queries
-            $this->conn->autocommit(TRUE);
+            $this->conn->autocommit(true);
             $arr["status"] = true;
-            return json_encode($arr);
         } catch(Exception $e) {
             ## remove all queries from queue if error (undo)
             $this->conn->rollback();
             $arr["msg"] = $e->getMessage();
             $this->conn->close();
-            return json_encode($arr);
         }
+
+        return json_encode($arr);
+    }
+
+    /**
+     * class內部調用function:checkMovieStatus
+     * 檢查電影的上下架狀態
+     */
+    function checkMovieStatus($event)
+    {
+        $arr = [
+            'status' => false,
+            'msg' => '',
+        ];
+        $sql0 = "SELECT `movie`.`status` FROM `movie`,`movie_time` 
+                        WHERE `movie`.`id` = `movie_time`.`movie_id` 
+                        AND `movie_time`.`id` = ?";
+        $stmt0 = $this->conn->prepare($sql0);
+        $stmt0->bind_param("s", $event);
+        if (!$stmt0->execute()) {
+            $arr["msg"] = htmlspecialchars($stmt0->error);
+            return $arr;
+        };
+
+
+        $stmt0->bind_result($status);
+        $stmt0->fetch();
+        $stmt0->close();
+        $arr["status"] = true;
+        $arr["condition"] = $status;
+        return $arr;
     }
 }
