@@ -10,7 +10,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: "php/member.php",
+            url: "php/route.php",
             data: {
                 "action": "login",
                 "account": account,

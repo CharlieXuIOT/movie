@@ -13,7 +13,7 @@ class Book extends Token
     /**
      * 訂票結帳
      */
-    public function checkout($request)
+    public function post_checkout($request)
     {
         // print_r($request);
         $token = $request["token"];
@@ -22,7 +22,7 @@ class Book extends Token
         $seat = json_decode($request["seat"],true);
         $total = $request["total"];
         $regex = "/^[0-9]*$/";
-        $arr = [
+        $return_arr = [
             'status' => false,
             'msg' => '',
         ];
@@ -30,14 +30,14 @@ class Book extends Token
         ## 身分驗證
         $result = $this->checkToken();
         if ($result["permission"] < 1) {
-            $arr["msg"] = "guest not allowed";
-            return json_encode($arr);
+            $return_arr["msg"] = "guest not allowed";
+            return json_encode($return_arr);
         }
 
         ## 正則驗證
         if (!preg_match($regex, $event)) {
-            $arr["msg"] = "set regex not pass";
-            return json_encode($arr);
+            $return_arr["msg"] = "set regex not pass";
+            return json_encode($return_arr);
         }
 
         try {
@@ -58,7 +58,7 @@ class Book extends Token
             $stmt0->fetch();
             $stmt0->close();
 
-            if ($status == "0") {
+            if ($status === "0") {
                 throw new Exception(htmlspecialchars("MyErrorCode:Please check movie status"));
             };
 
@@ -85,8 +85,9 @@ class Book extends Token
             $sql5 = "SELECT `id`,`price` FROM `ticket` WHERE `type` IN (";
             $bind_form = "";
             $bind_array = array();
-            for ($i=0;$i<count($ticket);$i++) {
-                if ($i==0){
+            $count = count($ticket);
+            for ($i = 0; $i < $count; $i++) {
+                if ($i === 0){
                     $sql5 = $sql5."?";
                 } else {
                     $sql5 = $sql5.",?";
@@ -100,12 +101,12 @@ class Book extends Token
             $stmt5->bind_param($bind_form, ...$bind_array);
 
             if (!$stmt5->execute()) {
-                throw Exception(htmlspecialchars($stmt5->error));
+                throw new Exception(htmlspecialchars($stmt5->error));
             }
 
             $stmt5->store_result();
             if ($stmt5->num_rows != count($ticket)) {
-                throw Exception(htmlspecialchars("MyErrorCode:ticketType's name not correspond"));
+                throw new Exception(htmlspecialchars("MyErrorCode:ticketType's name not correspond"));
             }
 
             $stmt5->bind_result($id, $ticket_price);
@@ -115,7 +116,8 @@ class Book extends Token
                 // ticketprice array
                 $ticketprice[] = $ticket_price;
             }
-            for ($i=0;$i<count($ticketprice);$i++) {
+            $count = count($ticketprice);
+            for ($i = 0; $i < $count; $i++) {
                 $amount += $ticketprice[$i]*$ticket[$i]["quantity"];
             }
 
@@ -131,8 +133,9 @@ class Book extends Token
             $sql2 = "INSERT INTO `book_ticket` (`book_id`,`ticket_id`,`sheet`,`ticket_price`) VALUES ";
             $bind_form = "";
             $bind_array = array();
-            for ($i=0; $i<count($ticketid); $i++) {
-                if ($i==0){
+            $count = count($ticketid);
+            for ($i = 0; $i < $count; $i++) {
+                if ($i === 0){
                     $sql2 = $sql2."(?,?,?,?)";
                 } else {
                     $sql2 = $sql2.",(?,?,?,?)";
@@ -176,8 +179,9 @@ class Book extends Token
             $bind_array = array();
             $bind_array[] = $book_id;
 
-            for ($i=0; $i<count($seat); $i++) {
-                if ($i == 0) {
+            $count = count($seat);
+            for ($i = 0; $i < $count; $i++) {
+                if ($i === 0) {
                     $sql3 = $sql3."(`book_seat`.`row` = ? AND `book_seat`.`number` = ?)";
                 } else {
                     $sql3 = $sql3." OR (`book_seat`.`row` = ? AND `book_seat`.`number` = ?)";
@@ -206,8 +210,9 @@ class Book extends Token
             $bind_form = "";
             $bind_array = array();
 
-            for ($i=0; $i<count($seat); $i++) {
-                if ($i == 0) {
+            $count = count($seat);
+            for ($i = 0; $i < $count; $i++) {
+                if ($i === 0) {
                     $sql4 = $sql4."(?,?,?)";
                 } else {
                     $sql4 = $sql4.",(?,?,?)";
@@ -228,15 +233,15 @@ class Book extends Token
 
             ## turn off transactions + commit queued queries
             $this->conn->autocommit(true);
-            $arr["status"] = true;
+            $return_arr["status"] = true;
         } catch(Exception $e) {
             ## remove all queries from queue if error (undo)
             $this->conn->rollback();
-            $arr["msg"] = $e->getMessage();
+            $return_arr["msg"] = $e->getMessage();
             $this->conn->close();
         }
 
-        return json_encode($arr);
+        return json_encode($return_arr);
     }
 
     /**
@@ -245,7 +250,7 @@ class Book extends Token
      */
     function checkMovieStatus($event)
     {
-        $arr = [
+        $return_arr = [
             'status' => false,
             'msg' => '',
         ];
@@ -255,16 +260,16 @@ class Book extends Token
         $stmt0 = $this->conn->prepare($sql0);
         $stmt0->bind_param("s", $event);
         if (!$stmt0->execute()) {
-            $arr["msg"] = htmlspecialchars($stmt0->error);
-            return $arr;
+            $return_arr["msg"] = htmlspecialchars($stmt0->error);
+            return $return_arr;
         };
 
 
         $stmt0->bind_result($status);
         $stmt0->fetch();
         $stmt0->close();
-        $arr["status"] = true;
-        $arr["condition"] = $status;
-        return $arr;
+        $return_arr["status"] = true;
+        $return_arr["condition"] = $status;
+        return $return_arr;
     }
 }

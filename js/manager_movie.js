@@ -2,12 +2,8 @@ $(document).ready(function () {
     $(".edit").click(function () {
         let id = $(this).parent().parent().attr("id");
         $.ajax({
-            type: "POST",
-            url: "php/post.php",
-            data: {
-                "action": "manager_movie_edit",
-                "id": id
-            },
+            type: "GET",
+            url: "php/route.php?action=manager_movie_status&id=" + id,
             success: function (response) {
                 response = JSON.parse(response);
                 if (response["status"]) {
@@ -29,9 +25,9 @@ $(document).ready(function () {
         let id = $(this).attr('id');
         $.ajax({
             type: "POST",
-            url: "php/manager.php",
+            url: "php/route.php",
             data: {
-                "action": "manager_movie_edit",
+                "action": "manager_movie_info",
                 "id": id,
                 "name_tw": $("#nametw").val(),
                 "name_en": $("#nameen").val(),
@@ -67,9 +63,9 @@ $(document).on('click', '.btnn', function () {
     // console.log(button_position.attr("class"));
     $.ajax({
         type: "POST",
-        url: "php/manager.php",
+        url: "php/route.php",
         data: {
-            "action": "manager_movie",
+            "action": "manager_movie_status",
             "id": id,
             "status": status
         },

@@ -10,7 +10,7 @@ $(document).ready(function () {
             if (token !== "" && ticket !== "" && seat !== "" && total !== "") {
                 $.ajax({
                     type: "POST",
-                    url: "php/book.php",
+                    url: "php/route.php",
                     data: {
                         "action": "checkout",
                         "event" : event,

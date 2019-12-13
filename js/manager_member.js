@@ -36,7 +36,7 @@ $(document).on('click', '.btnn', function () {
     id = $(this).parent().parent().attr("id");
     $.ajax({
         type: "Post",
-        url: "php/member.php",
+        url: "php/route.php",
         data: {
             "action": "manager_member",
             "id": id,

@@ -51,7 +51,7 @@ $(document).ready(function () {
             password = $("#password").val();
             $.ajax({
                 type: "POST",
-                url: "php/member.php",
+                url: "php/route.php",
                 data: {
                     "action": "register",
                     "account": account,

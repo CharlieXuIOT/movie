@@ -12,7 +12,7 @@ $(document).ready(function () {
                 type: "POST",
                 url: "php/route.php",
                 data: {
-                    "action": "manager_addevent",
+                    "action": "manager_event",
                     "id": id,
                     "date": date,
                     "time": time

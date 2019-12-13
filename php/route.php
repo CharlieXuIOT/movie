@@ -2,40 +2,39 @@
 require_once ('classTest/mysql_connect.php');
 require_once ('classTest/Book.php');
 require_once ('classTest/Member.php');
-// require_once ('classTest/Post.php');
+require_once ('classTest/Display.php');
 require_once ('classTest/Manager.php');
 
 $book = new Book($conn);
 $member = new Member($conn);
-// $post = new Post($conn);
+$display = new Display($conn);
 $manager = new Manager($conn);
-// $arr = array($book, $member, $post, $manager);
-$arr = array($book, $member, $manager);
+$object_arr = array($book, $member, $display, $manager);
+$return_arr = [
+    'status' => false,
+    'msg' => '',
+];
 $exist = false;
-
 $action = strtolower($_SERVER['REQUEST_METHOD']) . '_' . $_REQUEST["action"];
 
-// post_manager_addevent
-// post_manager_event
-// echo $action;
-// exit;
-
+## check action exist or not
 if (isset($_REQUEST["action"])) {
-    foreach ($arr as $item) {
+    foreach ($object_arr as $item) {
         if (!$exist) {
             if (method_exists($item, $action)) {
-                print_r($item->{$_POST["action"]}($_POST));
+                echo $item->{$action}($_REQUEST);
+                // echo $item."->".$action;
                 $exist = true;
             }
         }
     }
 
     if (!$exist) {
-        echo "Please check action correspond";
-        exit;
+        $return_arr["msg"] = "Please check action correspond";
+        echo json_encode($return_arr);
     }
 
 } else {
-    echo "Please check action isset";
-    exit;
+    $return_arr["msg"] = "Please check action isset";
+    echo json_encode($return_arr);
 }

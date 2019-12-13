@@ -5,7 +5,7 @@ $(document).ready(function () {
         if (r === true) {
             $.ajax({
                 type: "POST",
-                url: "php/member.php",
+                url: "php/route.php",
                 data: {
                     "action": "logout"
                 },

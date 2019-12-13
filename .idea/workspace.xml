@@ -3,34 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="0f5fb6a5-0429-4f7f-8e6f-71ee338f000c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/book.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cache/5e13dcea40e303a51786493c970105e5b9be2b4b.register.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/cache/5e13dcea40e303a51786493c970105e5b9be2b4b.register.tpl.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/book_checkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/book_checkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/deposit.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/deposit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/manager_addevent.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/manager_addevent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/manager_member.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/manager_member.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/manager_movie.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/manager_movie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager_member.php" beforeDir="false" afterPath="$PROJECT_DIR$/manager_member.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/modify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/new.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/upload.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Book.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Book.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Manager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classTest/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classTest/Session.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/php/classTest/Token.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/Token.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/classTest/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/classTest/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/post.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/post.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/route.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/book_checkout.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_checkout.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager_member.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager_member.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager_movie.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager_movie.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/navbar.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.tpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/2fa2d0f9c92f645fecc9461c0e14ced9f2446eac_0.file.login.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/2fa2d0f9c92f645fecc9461c0e14ced9f2446eac_0.file.login.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/50a11f830d81e67a22e019c21787119d10c84c82_0.file.index.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/50a11f830d81e67a22e019c21787119d10c84c82_0.file.index.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/50f56b277c6e04ad33fea724c2c2654174c3b045_0.file.register.tpl.cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/50f56b277c6e04ad33fea724c2c2654174c3b045_0.file.register.tpl.cache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/796cd21d4abc9e87d9f5b56d597e4280774b2284_0.file.manager_movie.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/796cd21d4abc9e87d9f5b56d597e4280774b2284_0.file.manager_movie.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/8f60cb02fcd1980582db3c6b2005119fc2dea169_0.file.navbar.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/8f60cb02fcd1980582db3c6b2005119fc2dea169_0.file.navbar.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/a9a7dda71b8b7e2a75871a74b7582b556f33a0f8_0.file.book_checkout.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/a9a7dda71b8b7e2a75871a74b7582b556f33a0f8_0.file.book_checkout.tpl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates_c/f3d29194003ac7f1ea7f39f3ae0cd6d61f4c9471_0.file.manager_member.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates_c/f3d29194003ac7f1ea7f39f3ae0cd6d61f4c9471_0.file.manager_member.tpl.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +87,8 @@
       <workItem from="1575854410363" duration="29425000" />
       <workItem from="1575940990922" duration="25407000" />
       <workItem from="1576027094119" duration="25172000" />
-      <workItem from="1576113893534" duration="25219000" />
+      <workItem from="1576113893534" duration="25661000" />
+      <workItem from="1576200509699" duration="15497000" />
     </task>
     <servers />
   </component>
@@ -116,16 +107,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/php/classTest/Book.php</url>
-          <line>102</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

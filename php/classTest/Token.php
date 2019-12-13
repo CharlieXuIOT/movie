@@ -5,6 +5,10 @@ class Token
 {
     protected $conn;
     private static $permission = null;
+    protected $return_arr = [
+        'status' => false,
+        'msg' => '',
+    ];
 
     function __construct($conn)
     {
@@ -22,12 +26,12 @@ class Token
         $stmt = $this->conn->prepare("UPDATE `member` SET `token` = ?, `last_login` = ? WHERE `account` = ?");
         $stmt->bind_param("sss", $hash_account, $date, $account);
         if ($stmt->execute()) {
-            $arr["status"] = true;
-            $arr["token"] = $hash_account;
+            $return_arr["status"] = true;
+            $return_arr["token"] = $hash_account;
         } else {
-            $arr["status"] = false;
+            $return_arr["status"] = false;
         }
-        return $arr;
+        return $return_arr;
     }
 
     /**
@@ -37,11 +41,11 @@ class Token
     {
         ## 遊客或已登出會員，cookie裡面沒有token
         if (!isset($_COOKIE["token"])) {
-            $arr["status"] = true;
-            $arr["msg"] = "";
-            $arr["account"] = "guest";
-            $arr["permission"] = 0;
-            return $arr;
+            $return_arr["status"] = true;
+            $return_arr["msg"] = "";
+            $return_arr["account"] = "guest";
+            $return_arr["permission"] = 0;
+            return $return_arr;
         }
 
         ## 拿$_COOKIE["token"]查詢後獲得的帳號和權限
@@ -54,37 +58,37 @@ class Token
         $stmt->bind_result($account, $permission, $cash);
         $stmt->fetch();
         if ($account === NULL) {
-            $arr["status"] = false;
-            $arr["msg"] = "NULL";
+            $return_arr["status"] = false;
+            $return_arr["msg"] = "NULL";
             setcookie("token", "", time()-3600, "/");
         } else {
-            $arr["status"] = true;
-            $arr["msg"] = "";
-            $arr["account"] = $account;
-            $arr["permission"] = $permission;
-            $arr["cash"] = $cash;
+            $return_arr["status"] = true;
+            $return_arr["msg"] = "";
+            $return_arr["account"] = $account;
+            $return_arr["permission"] = $permission;
+            $return_arr["cash"] = $cash;
         }
-        self::$permission = $arr["permission"];
-        return $arr;
+        self::$permission = $return_arr["permission"];
+        return $return_arr;
     }
 
     /**
      * 登出 清除token
      */
-    function logout()
+    function post_logout()
     {
         $query = 'UPDATE `member` SET `token` = "" WHERE `token` = ?';
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $_COOKIE["token"]);
         if ($stmt->execute()) {
             setcookie("token", "", time()-1, "/");
-            $arr["status"] = true;
-            $arr["msg"] = "";
+            $return_arr["status"] = true;
+            $return_arr["msg"] = "";
         } else {
-            $arr["status"] = false;
-            $arr["msg"] = "SQL update error";
+            $return_arr["status"] = false;
+            $return_arr["msg"] = "SQL update error";
         }
-        return json_encode($arr);
+        return json_encode($return_arr);
     }
 
     /**
@@ -92,8 +96,8 @@ class Token
      */
     function cleanBookCookie()
     {
-        $arr = array("ticket", "count", "total", "seats");
-        foreach ($arr as $item) {
+        $cookie_arr = array("ticket", "count", "total", "seats");
+        foreach ($cookie_arr as $item) {
             if (isset($_COOKIE[$item])) {
                 setcookie($item, "", time()-1, "/");
             }
@@ -107,7 +111,7 @@ class Token
     function manager_verify()
     {
         if (self::$permission === null) {
-            $result = $this->checkToken();
+            $this->checkToken();
         }
 
         if (self::$permission === 2) {
@@ -123,7 +127,7 @@ class Token
     function member_verify()
     {
         if (self::$permission === null) {
-            $result = $this->checkToken();
+            $this->checkToken();
         }
 
         if (self::$permission >= 1) {
